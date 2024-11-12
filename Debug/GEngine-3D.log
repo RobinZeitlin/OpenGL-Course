@@ -1,0 +1,13 @@
+﻿  main.cpp
+C:\Projects\GEngine-3D\dependencies\glad\include\glad\glad.h(321,1): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(107,1): message : see previous definition of 'GL_ALL_ATTRIB_BITS'
+C:\Projects\GEngine-3D\dependencies\glad\include\glad\glad.h(409,1): warning C4005: 'GL_LOGIC_OP': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1152,1): message : see previous definition of 'GL_LOGIC_OP'
+C:\Projects\GEngine-3D\dependencies\glad\include\glad\glad.h(493,1): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1153,1): message : see previous definition of 'GL_TEXTURE_COMPONENTS'
+C:\Projects\GEngine-3D\dependencies\glad\include\glad\glad.h(587,1): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(973,1): message : see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+C:\Projects\Gengine-3D\main.cpp(47,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Debug\Mesh.obj : warning LNK4042: object specified more than once; extras ignored
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  GEngine-3D.vcxproj -> C:\Projects\Gengine-3D\Debug\GEngine-3D.exe
