@@ -4,11 +4,32 @@
 
 #include "src/shaders/Shader.h"
 #include "src/Cube.h"
+#include "src/camera/Camera.h"
 
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
 GLFWwindow* window;
+Camera camera;
+
+float lastX = 320, lastY = 240;
+bool firstMouse = true;
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+	if (firstMouse) {
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xOffset = xpos - lastX;
+	float yOffset = lastY - ypos;
+
+	lastX = xpos;
+	lastY = ypos;
+
+	camera.ProcessMouseMovement(xOffset, yOffset);
+}
 
 int main()
 {
@@ -34,6 +55,10 @@ int main()
 
 	Cube* cube = new Cube();
 
+	glfwSetCursorPosCallback(window, mouse_callback);
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -41,13 +66,13 @@ int main()
 		shader->Use();
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
-		glm::mat4 view = glm::lookAt(glm::vec3(1.5f, 1.5f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+		const float radius = 10.0f;
+		float camX = sin(glfwGetTime()) * radius;
+		float camZ = cos(glfwGetTime()) * radius;
+		glm::mat4 view = camera.GetViewMatrix();
 		
 		glm::mat4 transform = glm::mat4(1.0f);
-		float timeValue = glfwGetTime();
-		float angle = timeValue * 50.0f;
-
-		transform = glm::rotate(transform, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
 
 		shader->SetMatrix4(projection, "projection");
 		shader->SetMatrix4(view, "view");
