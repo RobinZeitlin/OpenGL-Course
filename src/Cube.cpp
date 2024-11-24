@@ -1,25 +1,58 @@
 #include "Cube.h"
 
-float Vertices[] = {
-    // Positions          // Colors
-   -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-    0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right-back
-    0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Top-right-back
-   -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-back
-   -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  // Bottom-left-front
-    0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  // Bottom-right-front
-    0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  // Top-right-front
-   -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 0.0f   // Top-left-front
+static float vertices[] = {
+	// Positions           // Color    
+	//     
+	 // Front face
+	 -0.5f, -0.5f,  0.5f,   0.0f, 1.0f,
+	  0.5f, -0.5f,  0.5f,   1.0f, 1.0f,
+	  0.5f,  0.5f,  0.5f,   1.0f, 0.0f,
+	 -0.5f,  0.5f,  0.5f,   0.0f, 0.0f,
+
+	 // Back face			
+	 -0.5f, -0.5f, -0.5f,   0.0f, 1.0f,
+	 -0.5f,  0.5f, -0.5f,   1.0f, 1.0f,
+	  0.5f,  0.5f, -0.5f,   1.0f, 0.0f,
+	  0.5f, -0.5f, -0.5f,   0.0f, 0.0f,
+
+	  // Bottom face		
+	  -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	   0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+	   0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+	  -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+	  // Top face
+	  -0.5f,  0.5f, -0.5f,   0.0f, 1.0f,
+	  -0.5f,  0.5f,  0.5f,   1.0f, 1.0f,
+	   0.5f,  0.5f,  0.5f,   1.0f, 0.0f,
+	   0.5f,  0.5f, -0.5f,   0.0f, 0.0f,
+
+	   // Left face
+	   -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	   -0.5f, -0.5f,  0.5f,  1.0f, 1.0f,
+	   -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	   -0.5f,  0.5f, -0.5f,  0.0f, 0.0f,
+
+	   // Right face
+		0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, 0.0f
 };
 
-// Each face of the cube is made of two triangles
-unsigned int indices[] = {
-    0, 1, 2, 2, 3, 0,  // Back face
-    4, 5, 6, 6, 7, 4,  // Front face
-    4, 5, 1, 1, 0, 4,  // Bottom face
-    7, 6, 2, 2, 3, 7,  // Top face
-    4, 7, 3, 3, 0, 4,  // Left face
-    5, 6, 2, 2, 1, 5   // Right face
+static unsigned int indices[] = {
+	// Front face
+	0, 2, 1, 2, 0, 3,
+	// Back face
+	4, 6, 5, 6, 4, 7,
+	// Bottom face
+	8, 10, 9, 10, 8, 11,
+	// Top face
+	12, 14, 13, 14, 12, 15,
+	// Left face
+	16, 18, 17, 18, 16, 19,
+	// Right face
+	20, 22, 21, 22, 20, 23
 };
 
-Cube::Cube() : Mesh(Vertices, sizeof(Vertices), indices, sizeof(indices)) {}
+Cube::Cube() : Mesh(vertices, sizeof(vertices), indices, sizeof(indices)) {}

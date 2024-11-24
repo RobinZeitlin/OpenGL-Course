@@ -9,7 +9,7 @@ Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     updateCameraVectors();
 }
 
-void Camera::ProcessMouseMovement(float xOffset, float yOffset) {
+void Camera::process_mouse_movement(float xOffset, float yOffset) {
     xOffset *= mouseSensitivity;
     yOffset *= mouseSensitivity;
 
@@ -20,6 +20,24 @@ void Camera::ProcessMouseMovement(float xOffset, float yOffset) {
     if (pitch < -89.0f) pitch = -89.0f;
 
     updateCameraVectors();
+}
+
+void Camera::input(GLFWwindow* window, float deltaTime)
+{
+    float cameraSpeed = 4.5f * deltaTime; // Adjust speed
+    
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        position += front * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        position -= front * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        position -= right * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        position += right * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        position += up * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        position += -up * cameraSpeed;
 }
 
 glm::mat4 Camera::GetViewMatrix() {
