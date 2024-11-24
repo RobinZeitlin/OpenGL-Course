@@ -1,0 +1,30 @@
+﻿  main.cpp
+Z:\Projects\OpenGL-Course\dependencies\glad\include\glad\glad.h(321,9): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'main.cpp')
+      D:\Include\10.0.22621.0\um\GL\gl.h(107,9):
+      see previous definition of 'GL_ALL_ATTRIB_BITS'
+  
+Z:\Projects\OpenGL-Course\dependencies\glad\include\glad\glad.h(409,9): warning C4005: 'GL_LOGIC_OP': macro redefinition
+  (compiling source file 'main.cpp')
+      D:\Include\10.0.22621.0\um\GL\gl.h(1152,9):
+      see previous definition of 'GL_LOGIC_OP'
+  
+Z:\Projects\OpenGL-Course\dependencies\glad\include\glad\glad.h(493,9): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
+  (compiling source file 'main.cpp')
+      D:\Include\10.0.22621.0\um\GL\gl.h(1153,9):
+      see previous definition of 'GL_TEXTURE_COMPONENTS'
+  
+Z:\Projects\OpenGL-Course\dependencies\glad\include\glad\glad.h(587,9): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'main.cpp')
+      D:\Include\10.0.22621.0\um\GL\gl.h(973,9):
+      see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+  
+Z:\Projects\OpenGL-Course\main.cpp(20,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(21,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(25,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(26,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(28,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(29,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(75,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Z:\Projects\OpenGL-Course\main.cpp(76,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  GEngine-3D.vcxproj -> Z:\Projects\OpenGL-Course\Debug\GEngine-3D.exe
