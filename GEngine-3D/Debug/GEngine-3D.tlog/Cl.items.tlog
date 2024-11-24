@@ -1,3 +1,10 @@
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_demo.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_demo.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_draw.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_draw.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_impl_glfw.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_impl_glfw.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_impl_opengl3.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_impl_opengl3.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_tables.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_tables.obj
+Z:\Projects\OpenGL-Course\dependencies\imgui\imgui_widgets.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\imgui_widgets.obj
 Z:\Projects\OpenGL-Course\dependencies\stb_image\stb_image.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\stb_image.obj
 Z:\Projects\OpenGL-Course\glad.c;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\glad.obj
 Z:\Projects\OpenGL-Course\main.cpp;Z:\Projects\OpenGL-Course\GEngine-3D\Debug\main.obj

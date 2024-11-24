@@ -12,6 +12,9 @@ public:
     glm::vec3 right;
     glm::vec3 worldUp;
 
+    glm::mat4 myProjection;
+    glm::mat4 myView;
+
     float yaw;
     float pitch;
 
