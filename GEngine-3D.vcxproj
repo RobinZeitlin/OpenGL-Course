@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera\Camera.cpp" />
     <ClCompile Include="src\Cube.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\rendering\Mesh.cpp" />
     <ClCompile Include="src\rendering\Mesh.h" />
     <ClCompile Include="src\rendering\Texture.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="src\camera\Camera.h" />
     <ClInclude Include="src\Cube.h" />
+    <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\shaders\Shader.h" />
   </ItemGroup>

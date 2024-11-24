@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
@@ -13,6 +14,8 @@
 
 #include "src/rendering/Texture.h" 
 
+#include "src/GameObject.h"
+
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <chrono>
@@ -25,7 +28,17 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+glm::vec3 position = glm::vec3(1.0f);
+
+std::vector<GameObject*> objects;
+GameObject* selectedObject;
+
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) != GLFW_PRESS) {
+        return;
+    }
+
     if (firstMouse) {
         lastX = xpos;
         lastY = ypos;
@@ -53,7 +66,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(1000, 800, "Hello World", NULL, NULL);
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -63,13 +76,6 @@ int main()
     }
 
     glEnable(GL_DEPTH_TEST);
-
-    Shader* shader = new Shader();
-    shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
-
-    Texture* texture = new Texture("res/textures/defaulttexture.png");
-    Cube* cube = new Cube();
-    cube->apply_texture(texture);
 
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -81,6 +87,29 @@ int main()
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
+    Shader* shader = new Shader();
+    shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
+
+    Texture* texture = new Texture("res/textures/defaulttexture.png");
+
+    Cube* cube = new Cube();
+    cube->apply_texture(texture);
+    auto object = new GameObject(cube, shader, &camera, { 1, 0, 0 });
+    object->change_name("Object1");
+    objects.push_back(object);
+
+    Cube* cube2 = new Cube();
+    cube2->apply_texture(texture);
+    auto object2 = new GameObject(cube2, shader, &camera, { 0, 0, 0 });
+    object2->change_name("Object2");
+    objects.push_back(object2);
+
+    Cube* cube3 = new Cube();
+    cube3->apply_texture(texture);
+    auto object3 = new GameObject(cube3, shader, &camera, { -1, 0, 0 });
+    object3->change_name("Object3");
+    objects.push_back(object3);
+
     while (!glfwWindowShouldClose(window))
     {
         // Calculate delta time
@@ -90,26 +119,42 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            camera.input(window, deltaTime);
+        }
+        else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+
+        for (size_t i = 0; i < objects.size(); i++) {
+            objects[i]->draw();
+        }
+
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        shader->Use();
+        ImGui::Begin("Hierarchy");
+        if (!objects.empty()) {
+            for (size_t i = 0; i < objects.size(); i++) {
+                auto thisObject = objects[i];
+                if (ImGui::Selectable(thisObject->name.c_str())) {
+                    selectedObject = thisObject;
+                }
+            }
+        }
+        ImGui::End();
 
-        glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
-        glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 transform = glm::mat4(1.0f);
+        ImGui::Begin("Inspector");
+        if (selectedObject != nullptr)
+        {
+            ImGui::InputText("Name", &selectedObject->name[0], selectedObject->name.size() + 1);
 
-        shader->SetMatrix4(projection, "projection");
-        shader->SetMatrix4(view, "view");
-        shader->SetMatrix4(transform, "transform");
-
-        cube->Draw(shader);
-
-        camera.input(window, deltaTime);
-
-        ImGui::Begin("Window");
-        ImGui::Text("Text");
+            if (ImGui::CollapsingHeader("Transform")) {
+                ImGui::DragFloat3("Position", &selectedObject->position[0], 0.1f);
+            }
+        }
         ImGui::End();
 
         ImGui::Render();

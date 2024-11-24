@@ -7,28 +7,16 @@
       "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\vertex.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\shaders\\vertex.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\fragment.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\shaders\\fragment.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\Cube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\Cube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\rendering\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -39,8 +27,32 @@
       "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\rendering\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\camera\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\dependencies\\stb_image\\stb_image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:dependencies\\stb_image\\stb_image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\rendering\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\fragment.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\shaders\\fragment.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\vertex.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\shaders\\vertex.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -49,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\camera\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|solutionrelative:src\\camera\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B3096CE4-70C6-4C58-B60A-DFF2929B03B9}|GEngine-3D.vcxproj|Z:\\Projects\\OpenGL-Course\\src\\shaders\\vertex.shader||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -87,9 +95,37 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "Z:\\Projects\\OpenGL-Course\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAE8AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAUwF8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-24T08:30:35.55Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameObject.h",
+              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\GameObject.h",
+              "RelativeDocumentMoniker": "src\\GameObject.h",
+              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\GameObject.h",
+              "RelativeToolTip": "src\\GameObject.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-24T14:20:55.36Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Mesh.h",
+              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.h",
+              "RelativeDocumentMoniker": "src\\rendering\\Mesh.h",
+              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.h",
+              "RelativeToolTip": "src\\rendering\\Mesh.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-24T08:30:35.489Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -100,6 +136,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameObject.cpp",
+              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\GameObject.cpp",
+              "RelativeDocumentMoniker": "src\\GameObject.cpp",
+              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\GameObject.cpp",
+              "RelativeToolTip": "src\\GameObject.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-24T14:59:16.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Camera.h",
+              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h",
+              "RelativeDocumentMoniker": "src\\camera\\Camera.h",
+              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h",
+              "RelativeToolTip": "src\\camera\\Camera.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-24T09:17:12.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "vertex.shader",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\shaders\\vertex.shader",
               "RelativeDocumentMoniker": "src\\shaders\\vertex.shader",
@@ -112,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "fragment.shader",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\shaders\\fragment.shader",
               "RelativeDocumentMoniker": "src\\shaders\\fragment.shader",
@@ -125,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Texture.h",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.h",
               "RelativeDocumentMoniker": "src\\rendering\\Texture.h",
@@ -133,23 +195,25 @@
               "RelativeToolTip": "src\\rendering\\Texture.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-24T09:42:16.354Z"
+              "WhenOpened": "2024-11-24T09:42:16.354Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Texture.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.cpp",
               "RelativeDocumentMoniker": "src\\rendering\\Texture.cpp",
               "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Texture.cpp",
               "RelativeToolTip": "src\\rendering\\Texture.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-24T09:42:09.755Z"
+              "WhenOpened": "2024-11-24T09:42:09.755Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "stb_image.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\dependencies\\stb_image\\stb_image.cpp",
               "RelativeDocumentMoniker": "dependencies\\stb_image\\stb_image.cpp",
@@ -157,11 +221,12 @@
               "RelativeToolTip": "dependencies\\stb_image\\stb_image.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-24T09:38:44.763Z"
+              "WhenOpened": "2024-11-24T09:38:44.763Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Camera.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.cpp",
               "RelativeDocumentMoniker": "src\\camera\\Camera.cpp",
@@ -174,18 +239,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Camera.h",
-              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h",
-              "RelativeDocumentMoniker": "src\\camera\\Camera.h",
-              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\camera\\Camera.h",
-              "RelativeToolTip": "src\\camera\\Camera.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-24T09:17:12.453Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Cube.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\Cube.cpp",
               "RelativeDocumentMoniker": "src\\Cube.cpp",
@@ -198,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Cube.h",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\Cube.h",
               "RelativeDocumentMoniker": "src\\Cube.h",
@@ -206,23 +259,12 @@
               "RelativeToolTip": "src\\Cube.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-24T08:30:35.489Z"
+              "WhenOpened": "2024-11-24T08:30:35.489Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Mesh.h",
-              "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.h",
-              "RelativeDocumentMoniker": "src\\rendering\\Mesh.h",
-              "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.h",
-              "RelativeToolTip": "src\\rendering\\Mesh.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-24T08:30:35.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Shader.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\shaders\\Shader.cpp",
               "RelativeDocumentMoniker": "src\\shaders\\Shader.cpp",
@@ -234,19 +276,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Mesh.cpp",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.cpp",
               "RelativeDocumentMoniker": "src\\rendering\\Mesh.cpp",
               "ToolTip": "Z:\\Projects\\OpenGL-Course\\src\\rendering\\Mesh.cpp",
               "RelativeToolTip": "src\\rendering\\Mesh.cpp",
-              "ViewState": "AgIAABkAAAAAAAAAAAAuwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-24T08:30:35.67Z"
+              "WhenOpened": "2024-11-24T08:30:35.67Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "vertex.shader",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\shaders\\vertex.shader",
               "RelativeDocumentMoniker": "src\\shaders\\vertex.shader",
@@ -259,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "fragment.shader",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\src\\shaders\\fragment.shader",
               "RelativeDocumentMoniker": "src\\shaders\\fragment.shader",
@@ -272,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "GL.h",
               "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\gl\\GL.h",
               "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\gl\\GL.h",
@@ -282,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "glad.h",
               "DocumentMoniker": "Z:\\Projects\\OpenGL-Course\\dependencies\\glad\\include\\glad\\glad.h",
               "RelativeDocumentMoniker": "dependencies\\glad\\include\\glad\\glad.h",
