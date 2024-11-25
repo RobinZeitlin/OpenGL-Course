@@ -25,6 +25,8 @@ public:
     void process_mouse_movement(float xOffset, float yOffset);
     void input(GLFWwindow* window, float deltaTime);
 
+    void focus_object(glm::vec3 targetPosition);
+
     glm::mat4 GetViewMatrix();
 
 private:

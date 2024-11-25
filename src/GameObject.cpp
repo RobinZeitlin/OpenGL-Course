@@ -11,7 +11,13 @@ void GameObject::draw()
     glm::mat4 view = camera->GetViewMatrix();
     glm::mat4 transform = glm::mat4(1.0f);
 
-    transform = glm::translate(transform, position);
+    transform = glm::translate(transform, this->transform.position);
+
+    transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.z), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    transform = glm::scale(transform, this->transform.scale);
 
     shader->SetMatrix4(projection, "projection");
     shader->SetMatrix4(view, "view");
