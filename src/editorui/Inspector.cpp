@@ -4,6 +4,8 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include <filesystem>
+
 #include "../Game.h"
 
 Inspector::Inspector()
@@ -40,7 +42,28 @@ void Inspector::draw(Game* game)
             ImGui::Text("Texture : ");
             ImGui::SameLine();
             if (ImGui::ImageButton("Texture", game->selectedObject->texture->textureObject, ImVec2(50, 50))) { 
-                
+                ImGui::OpenPopup("PopUp");
+            }
+
+            ImGui::SetNextWindowSize(ImVec2(200, 150));
+            if (ImGui::BeginPopup("PopUp")) {
+                std::vector<std::string> items;
+                std::string filePath = "res/textures/";
+                std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
+
+                for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+                    if (entry.is_regular_file()) {
+                        std::string textureName = entry.path().stem().string() + entry.path().extension().string();
+                        items.push_back(textureName);
+                    }
+                }
+
+                ImGui::Text("Files found : %s", std::to_string(items.size()).c_str());
+                for (auto item : items) {
+                    ImGui::Selectable(item.c_str());
+                }
+
+                ImGui::EndPopup();
             }
         }
     }

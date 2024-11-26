@@ -3,6 +3,19 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
+#include "rendering/Mesh.h"
+#include "shaders/Shader.h"
+#include "rendering/Texture.h"
+
+GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos) 
+    : mesh(mesh), shader(shader), texture(texture), camera(camera)
+{
+    transform.position = pos;
+    transform.scale = glm::vec3(1);
+
+    mesh->apply_texture(texture);
+}
+
 void GameObject::draw()
 {
     shader->Use();

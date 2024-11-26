@@ -156,13 +156,14 @@
     <ClCompile Include="src\camera\Camera.cpp" />
     <ClCompile Include="src\Cube.cpp" />
     <ClCompile Include="src\Editor.cpp" />
+    <ClCompile Include="src\editorui\ContentSelector.cpp" />
     <ClCompile Include="src\editorui\Hierarchy.cpp" />
     <ClCompile Include="src\editorui\Inspector.cpp" />
     <ClCompile Include="src\editorui\ToolBar.cpp" />
+    <ClCompile Include="src\engine\OBJLoader.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\rendering\Mesh.cpp" />
-    <ClCompile Include="src\rendering\Mesh.h" />
     <ClCompile Include="src\rendering\Texture.cpp" />
     <ClCompile Include="src\shaders\Shader.cpp" />
   </ItemGroup>
@@ -185,12 +186,15 @@
     <ClInclude Include="src\camera\Camera.h" />
     <ClInclude Include="src\Cube.h" />
     <ClInclude Include="src\Editor.h" />
+    <ClInclude Include="src\editorui\ContentSelector.h" />
     <ClInclude Include="src\editorui\Hierarchy.h" />
     <ClInclude Include="src\editorui\Inspector.h" />
     <ClInclude Include="src\editorui\Toolbar.h" />
+    <ClInclude Include="src\engine\OBJLoader.h" />
     <ClInclude Include="src\engine\Transform.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\rendering\Mesh.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\shaders\Shader.h" />
   </ItemGroup>

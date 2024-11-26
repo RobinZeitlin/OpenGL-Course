@@ -14,6 +14,8 @@
 #include "Cube.h"
 #include "GameObject.h"
 
+#include "engine/OBJLoader.h"
+
 class Game {
 public: 
 	Game(Camera* camera);
@@ -28,4 +30,6 @@ public:
 	GameObject* selectedObject;
 
 	Camera* camera;
+	OBJLoader* objLoader;
+
 };

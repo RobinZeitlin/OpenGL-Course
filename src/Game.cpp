@@ -2,15 +2,18 @@
 
 Game::Game(Camera* camera) 
     : camera(camera) {
+
+    objLoader = new OBJLoader();
+    objLoader->init();
+
     Shader* shader = new Shader();
     shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 
     Texture* texture = new Texture("res/textures/defaulttexture.png");
 
-    for (size_t i = 0; i < 5; i++)
+    for (size_t i = 0; i < 1; i++)
     {
-        Cube* cube = new Cube();
-        auto object = new GameObject(cube, shader, texture, camera, glm::vec3(1.1f * i, 0, 0));
+        auto object = new GameObject(objLoader->getMesh("cube"), shader, texture, camera, glm::vec3(1.1f * i, 0, 0));
         object->change_name(("Object" + std::to_string(i)).c_str());
         objects.push_back(object);
     }

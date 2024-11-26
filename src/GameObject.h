@@ -1,23 +1,17 @@
 #pragma once
 
-#include "rendering/Mesh.h"
-#include "shaders/Shader.h"
-#include "rendering/Texture.h"
+#include <string>
 
 #include "camera/Camera.h"
-
 #include "engine/Transform.h"
+
+class Mesh;
+class Shader;
+class Texture;
 
 class GameObject {
 public:
-	GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos)
-		: mesh(mesh), shader(shader), texture(texture), camera(camera) 
-	{ 
-		transform.position = pos;
-		transform.scale = glm::vec3(1);
-
-		mesh->apply_texture(texture);
-	}
+	GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos);
 
 	~GameObject() {
 		delete mesh;
