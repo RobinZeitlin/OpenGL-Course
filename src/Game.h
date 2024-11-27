@@ -11,7 +11,6 @@
 
 #include "camera/Camera.h"
 
-#include "Cube.h"
 #include "GameObject.h"
 
 #include "engine/OBJLoader.h"
@@ -32,4 +31,5 @@ public:
 	Camera* camera;
 	OBJLoader* objLoader;
 
+	Texture* defaultIcon;
 };

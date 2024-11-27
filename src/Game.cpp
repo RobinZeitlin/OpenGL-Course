@@ -10,11 +10,11 @@ Game::Game(Camera* camera)
     shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 
     Texture* texture = new Texture("res/textures/defaulttexture.png");
+    defaultIcon = new Texture("res/textures/defaulticon.png");
 
-    for (size_t i = 0; i < 1; i++) {
-        auto mesh = objLoader->getMesh("teapot");
-        auto cube = new Cube();
-        auto object = new GameObject(mesh, shader, texture, camera, glm::vec3(1.1f * i, 0, 0));
+    for (size_t i = 0; i < 3; i++) {
+        auto mesh = objLoader->getMesh("cube");
+        auto object = new GameObject(mesh, shader, texture, camera, glm::vec3(3 * i, 0, -3));
         object->change_name(("Object" + std::to_string(i)).c_str());
         objects.push_back(object);
     }

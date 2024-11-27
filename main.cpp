@@ -5,7 +5,6 @@
 #include <glad/glad.h>
 
 #include "src/shaders/Shader.h"
-#include "src/Cube.h"
 #include "src/camera/Camera.h"
 
 #include "src/rendering/Texture.h" 

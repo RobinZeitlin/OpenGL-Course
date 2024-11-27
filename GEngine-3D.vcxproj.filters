@@ -24,9 +24,6 @@
     <ClCompile Include="src\shaders\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,9 +96,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\shaders\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\camera\Camera.h">
@@ -183,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\defaulttexture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\defaulticon.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

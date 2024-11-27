@@ -40,7 +40,7 @@ Mesh* OBJLoader::loadMesh(const std::string objPath) {
     }
 
     std::vector<float> vertices;
-    //std::vector<float> textureCoordinates;
+    std::vector<float> textureCoordinates;
     std::vector<unsigned int> indices;
 
     while (std::getline(file, line)) {
@@ -54,28 +54,15 @@ Mesh* OBJLoader::loadMesh(const std::string objPath) {
 
             vertices.push_back(vertexPoint.x);
             vertices.push_back(vertexPoint.y);
-            vertices.push_back(vertexPoint.z);
+            vertices.push_back(vertexPoint.z); }
 
-            vertices.push_back(0.f);
-            vertices.push_back(0.f);
-
-            std::cout << "v = "
-                "X : " << vertexPoint.x <<
-                " Y : " << vertexPoint.y <<
-                " Z : " << vertexPoint.z <<
-                std::endl;
-        }
-
-        /*if (prefix == "vt") {
+        if (prefix == "vt") {
             glm::vec2 textureCoordinate;
 
             iss >> textureCoordinate.x >> textureCoordinate.y;
 
             textureCoordinates.push_back(textureCoordinate.x);
-            textureCoordinates.push_back(textureCoordinate.y);
-
-            std::cout << "vt = " << "X : " << textureCoordinate.x << " Y : " << textureCoordinate.y << std::endl;
-        }*/
+            textureCoordinates.push_back(textureCoordinate.y);}
 
         if (prefix == "f") {
             for (int i = 0; i < 3; i++) {
@@ -93,7 +80,7 @@ Mesh* OBJLoader::loadMesh(const std::string objPath) {
 
     file.close();
 
-    /*std::vector<float> vertexData;
+    std::vector<float> vertexData;
     for (size_t i = 0; i < vertices.size() / 3; ++i) {
         vertexData.push_back(vertices[i * 3]);
         vertexData.push_back(vertices[i * 3 + 1]);
@@ -101,10 +88,8 @@ Mesh* OBJLoader::loadMesh(const std::string objPath) {
 
         vertexData.push_back(textureCoordinates[i * 2]);
         vertexData.push_back(textureCoordinates[i * 2 + 1]);
+    }
 
-        std::cout << "v = " << "X : " << vertices[i * 3] << " Y : " << vertices[i * 3 + 1] << " Z : " << vertices[i * 3 + 2] << " vt : u : " << textureCoordinates[i * 2] << " vt : v : " << textureCoordinates[i * 2 + 1] << std::endl;
-    }*/
-
-    Mesh* newMesh = new Mesh(vertices.data(), vertices.size() * sizeof(float), indices.data(), indices.size() * sizeof(unsigned int));
+    Mesh* newMesh = new Mesh(vertexData.data(), vertexData.size() * sizeof(float), indices.data(), indices.size() * sizeof(unsigned int));
     return newMesh;
 }

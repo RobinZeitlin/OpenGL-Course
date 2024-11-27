@@ -154,7 +154,6 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera\Camera.cpp" />
-    <ClCompile Include="src\Cube.cpp" />
     <ClCompile Include="src\Editor.cpp" />
     <ClCompile Include="src\editorui\ContentSelector.cpp" />
     <ClCompile Include="src\editorui\Hierarchy.cpp" />
@@ -184,7 +183,6 @@
     <ClInclude Include="dependencies\stb_image\stb_image.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="src\camera\Camera.h" />
-    <ClInclude Include="src\Cube.h" />
     <ClInclude Include="src\Editor.h" />
     <ClInclude Include="src\editorui\ContentSelector.h" />
     <ClInclude Include="src\editorui\Hierarchy.h" />
@@ -206,6 +204,7 @@
     <Library Include="dependencies\glfw\lib\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\textures\defaulticon.png" />
     <Image Include="res\textures\defaulttexture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
