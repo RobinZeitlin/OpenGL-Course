@@ -10,27 +10,26 @@ OBJLoader::~OBJLoader() {
 
 }
 
-void OBJLoader::init() {
+bool OBJLoader::init() {
     std::string filePath = "res/objmodels/";
     std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
-
+    int i = 1;
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         if (entry.is_regular_file()) {
             std::string objName = entry.path().stem().string();
             auto mesh = loadMesh(filePath + objName);
             files[objName] = mesh;
             if (mesh != nullptr) {
-                std::cout << "Loaded : " + objName << std::endl;
+                std::cout << std::format("Model \"{}\" ({} / {}) Loaded", objName, i, files.size()) << std::endl;
             }
+            i++;
         }
     }
 
-    std::cout << "Loaded files" << std::endl;
+    return true;
 }
 
 Mesh* OBJLoader::loadMesh(const std::string objPath) {
-    std::cout << objPath << std::endl;
-
     std::ifstream file(objPath + ".obj");
     std::string line;
 

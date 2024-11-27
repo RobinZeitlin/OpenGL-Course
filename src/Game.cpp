@@ -4,7 +4,7 @@ Game::Game(Camera* camera)
     : camera(camera) {
 
     objLoader = new OBJLoader();
-    objLoader->init();
+    if (!objLoader->init()) return;
 
     Shader* shader = new Shader();
     shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
@@ -13,7 +13,7 @@ Game::Game(Camera* camera)
     defaultIcon = new Texture("res/textures/defaulticon.png");
 
     for (size_t i = 0; i < 3; i++) {
-        auto mesh = objLoader->getMesh("cube");
+        auto mesh = objLoader->getMesh("diamant");
         auto object = new GameObject(mesh, shader, texture, camera, glm::vec3(3 * i, 0, -3));
         object->change_name(("Object" + std::to_string(i)).c_str());
         objects.push_back(object);
@@ -44,6 +44,6 @@ void Game::delete_object(GameObject* gameObject) {
         objects.erase(it);
     }
 
-    delete gameObject;
     selectedObject = nullptr;
+    delete gameObject;
 }

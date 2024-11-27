@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <filesystem>
+#include <format>
 #include <unordered_map>
 
 #include <fstream>
@@ -18,7 +19,7 @@ public:
 	OBJLoader();
 	~OBJLoader();
 
-	void init();
+	bool init();
 
 	Mesh* getMesh(std::string objName) {
 		if (files[objName])
