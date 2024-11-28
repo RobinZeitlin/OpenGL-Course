@@ -15,6 +15,7 @@
 
 #include "engine/OBJLoader.h"
 #include "engine/TextureLoader.h"
+#include "engine/EditorGrid.h"
 
 class Game {
 public: 
@@ -32,4 +33,7 @@ public:
 	Camera* camera;
 
 	Texture* defaultIcon;
+	Shader* basicShader;
+
+	EditorGrid* editorGrid;
 };

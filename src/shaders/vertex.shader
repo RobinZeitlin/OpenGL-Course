@@ -12,6 +12,6 @@ uniform mat4 view;
 void main()
 {
     gl_Position = projection * view * transform * vec4(aPos, 1.0);
-    vertexColor = vec4(1.0, 1.0, 1.0, 1.0);
+    vertexColor = vec4(1.0, 0.0, 0.0, 1.0);
     texCoord = aTexCord;
 }

@@ -3,17 +3,17 @@
 Game::Game(Camera* camera) 
     : camera(camera) {
 
-    Shader* shader = new Shader();
-    shader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
+    basicShader = new Shader();
+    basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
-    for (size_t i = 0; i < 2; i++) {
+    for (size_t i = 0; i < 1; i++) {
         auto mesh = OBJLoader::get_instance().get_mesh("teapot");
 
         auto object = new GameObject(
             mesh,
-            shader, 
+            basicShader,
             TextureLoader::get_instance().get_texture("defaulttexture"), 
             camera, 
             glm::vec3(3 * i, 0, -3));
@@ -21,6 +21,19 @@ Game::Game(Camera* camera)
         object->change_name(("Object" + std::to_string(i)).c_str());
         objects.push_back(object);
     }
+
+    float vertices[] = {
+     -3.0f, 0.0f, 0.0f,
+      3.0f, 0.0f, 0.0f,
+
+     -3.0f, 0.0f, 3.0f,
+      3.0f, 0.0f, 3.0f,
+
+     -3.0f, 0.0f, -3.0f,
+      3.0f, 0.0f, -3.0f,
+    };
+
+    editorGrid = new EditorGrid(vertices, sizeof(vertices));
 }
 
 Game::~Game() {
@@ -30,6 +43,7 @@ Game::~Game() {
 
     delete defaultIcon;
     delete camera;
+    delete editorGrid;
 }
 
 void Game::update() {
@@ -42,6 +56,8 @@ void Game::draw() {
         if (!objects[i]->bIsVisible) continue;
             objects[i]->draw();
     }
+
+    editorGrid->draw(basicShader, camera);
 }
 
 void Game::delete_object(GameObject* gameObject) {

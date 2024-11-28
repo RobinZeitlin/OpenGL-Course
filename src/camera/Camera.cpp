@@ -23,7 +23,7 @@ void Camera::process_mouse_movement(float xOffset, float yOffset) {
 }
 
 void Camera::input(GLFWwindow* window, float deltaTime) {
-    float cameraSpeed = 4.5f * deltaTime; // Adjust speed
+    float cameraSpeed = 10.0f * deltaTime;
     
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         position += front * cameraSpeed;
