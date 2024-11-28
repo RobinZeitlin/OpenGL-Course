@@ -14,6 +14,7 @@
 #include "GameObject.h"
 
 #include "engine/OBJLoader.h"
+#include "engine/TextureLoader.h"
 
 class Game {
 public: 
@@ -29,7 +30,6 @@ public:
 	GameObject* selectedObject;
 
 	Camera* camera;
-	OBJLoader* objLoader;
 
 	Texture* defaultIcon;
 };

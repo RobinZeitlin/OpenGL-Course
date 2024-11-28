@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "camera/Camera.h"
 #include "engine/Transform.h"
@@ -19,9 +20,8 @@ public:
 	void change_name(std::string newName) { name = newName; }
 	void draw();
 
-	void change_texture(Texture* newTexture) {
-		texture = newTexture;
-	}
+	void change_texture(Texture* newTexture);
+	void change_mesh(Mesh* newMesh);
 
 	bool bIsVisible = true;
 	std::string name = "Nothing";

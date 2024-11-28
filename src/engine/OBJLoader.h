@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <format>
 #include <unordered_map>
+#include <chrono>
 
 #include <fstream>
 #include <sstream>
@@ -16,23 +17,27 @@ class Mesh;
 
 class OBJLoader {
 public:
-	OBJLoader();
+	static OBJLoader& get_instance() {
+		static OBJLoader instance;
+		return instance;
+	}
+
 	~OBJLoader();
 
-	bool init();
+	void clean_up();
 
-	Mesh* getMesh(std::string objName) {
+	Mesh* get_mesh(std::string objName) {
 		if (files[objName])
 		{
 			return files[objName];
 		}
-
-		std::cout << "no mesh found" << std::endl;
-
-		return nullptr;
+		
+		return load_mesh(filePath + objName);
 	}
 
-	Mesh* loadMesh(std::string objPath);
+	Mesh* load_mesh(std::string objPath);
 
 	std::unordered_map<std::string, Mesh*> files;
+	std::string filePath = "res/objmodels/";
+	std::string fileFormat = ".obj";
 };

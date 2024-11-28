@@ -53,14 +53,19 @@ void Inspector::draw(Game* game)
 
                 for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
                     if (entry.is_regular_file()) {
-                        std::string textureName = entry.path().stem().string() + entry.path().extension().string();
+                        std::string textureName = entry.path().stem().string();
                         items.push_back(textureName);
                     }
                 }
 
                 ImGui::Text("Files found : %s", std::to_string(items.size()).c_str());
                 for (auto item : items) {
-                    ImGui::Selectable(item.c_str());
+                    if (ImGui::Selectable(item.c_str())) {
+                        Texture* texture = TextureLoader::get_instance().get_texture(item.c_str());
+
+                        auto sObj = game->selectedObject;
+                        sObj->change_texture(texture);
+                    }
                 }
 
                 ImGui::EndPopup();
@@ -81,14 +86,19 @@ void Inspector::draw(Game* game)
 
                 for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
                     if (entry.is_regular_file()) {
-                        std::string textureName = entry.path().stem().string() + entry.path().extension().string();
-                        items.push_back(textureName);
+                        std::string modelName = entry.path().stem().string();
+                        items.push_back(modelName);
                     }
                 }
 
                 ImGui::Text("Files found : %s", std::to_string(items.size()).c_str());
                 for (auto item : items) {
-                    ImGui::Selectable(item.c_str());
+                    if (ImGui::Selectable(item.c_str())) {
+                        Mesh* mesh = OBJLoader::get_instance().get_mesh(item.c_str());
+
+                        auto sObj = game->selectedObject;
+                        sObj->change_mesh(mesh);
+                    }
                 }
 
                 ImGui::EndPopup();

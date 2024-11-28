@@ -77,7 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glad\include;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\stb_image;$(SolutionDir)dependencies\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;C:\Projects\GEngine-3D\dependencies\glad\include;C:\Projects\GEngine-3D\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,7 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;C:\Projects\GEngine-3D\dependencies\glad\include;C:\Projects\GEngine-3D\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,7 +131,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;C:\Projects\GEngine-3D\dependencies\glad\include;C:\Projects\GEngine-3D\dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +160,7 @@
     <ClCompile Include="src\editorui\Inspector.cpp" />
     <ClCompile Include="src\editorui\ToolBar.cpp" />
     <ClCompile Include="src\engine\OBJLoader.cpp" />
+    <ClCompile Include="src\engine\TextureLoader.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\rendering\Mesh.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="src\editorui\Inspector.h" />
     <ClInclude Include="src\editorui\Toolbar.h" />
     <ClInclude Include="src\engine\OBJLoader.h" />
+    <ClInclude Include="src\engine\TextureLoader.h" />
     <ClInclude Include="src\engine\Transform.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />

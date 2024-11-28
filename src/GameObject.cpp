@@ -18,6 +18,8 @@ GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* cam
 
 void GameObject::draw()
 {
+    if (mesh == nullptr || shader == nullptr) return;
+
     shader->Use();
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
@@ -38,3 +40,14 @@ void GameObject::draw()
 
     this->mesh->Draw(shader);
 }
+
+void GameObject::change_texture(Texture* newTexture) {
+    texture = newTexture;
+    mesh->apply_texture(texture);
+}
+
+void GameObject::change_mesh(Mesh* newMesh) {
+    mesh = newMesh;
+    mesh->apply_texture(texture);   
+}
+

@@ -2,35 +2,20 @@
 
 #include "../rendering/Mesh.h"
 
-OBJLoader::OBJLoader()
-{
-}
-
 OBJLoader::~OBJLoader() {
-
+    clean_up();
 }
 
-bool OBJLoader::init() {
-    std::string filePath = "res/objmodels/";
-    std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
-    int i = 1;
-    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
-        if (entry.is_regular_file()) {
-            std::string objName = entry.path().stem().string();
-            auto mesh = loadMesh(filePath + objName);
-            files[objName] = mesh;
-            if (mesh != nullptr) {
-                std::cout << std::format("Model \"{}\" ({} / {}) Loaded", objName, i, files.size()) << std::endl;
-            }
-            i++;
-        }
+void OBJLoader::clean_up() {
+    for (auto& [key, file] : files)
+    {
+        delete file;
     }
-
-    return true;
+    files.clear();
 }
 
-Mesh* OBJLoader::loadMesh(const std::string objPath) {
-    std::ifstream file(objPath + ".obj");
+Mesh* OBJLoader::load_mesh(const std::string objPath) {
+    std::ifstream file(objPath + fileFormat);
     std::string line;
 
     if (!file.is_open()) {
@@ -75,6 +60,8 @@ Mesh* OBJLoader::loadMesh(const std::string objPath) {
                 indices.push_back(vert_index - 1);
             }
         }
+
+        std::chrono::milliseconds(3);
     }
 
     file.close();
