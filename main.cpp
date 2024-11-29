@@ -20,7 +20,6 @@
 
 GLFWwindow* window;
 
-Game* game;
 Editor* editor;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -32,6 +31,8 @@ float lastFrame = 0.0f;
 
 const int width = 1000;
 const int height = 800;
+
+Game* gGameInstance = nullptr;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
@@ -80,8 +81,8 @@ int main()
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
-    game = new Game(&camera);
-    editor = new Editor(window, game);
+    gameInstance = new Game(&camera);
+    editor = new Editor(window, gameInstance);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -100,7 +101,9 @@ int main()
             firstMouse = true;
         }
 
-        game->draw();
+        gameInstance->draw();
+        gameInstance->update();
+
         editor->draw();
 
         glfwSwapBuffers(window);

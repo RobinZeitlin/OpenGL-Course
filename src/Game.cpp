@@ -1,7 +1,11 @@
 #include "Game.h"
 
+#include <vector>
+
+Game* gameInstance = nullptr;
+
 Game::Game(Camera* camera) 
-    : camera(camera) {
+    : flyingCamera(camera) {
 
     basicShader = new Shader();
     basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
@@ -12,7 +16,7 @@ Game::Game(Camera* camera)
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
     for (size_t i = 0; i < 1; i++) {
-        auto mesh = OBJLoader::get_instance().get_mesh("teapot");
+        auto mesh = OBJLoader::get_instance().get_mesh("diamant");
 
         auto object = new GameObject(
             mesh,
@@ -25,18 +29,7 @@ Game::Game(Camera* camera)
         objects.push_back(object);
     }
 
-    float vertices[] = {
-     -3.0f, 0.0f, 0.0f,
-      3.0f, 0.0f, 0.0f,
-
-     -3.0f, 0.0f, 3.0f,
-      3.0f, 0.0f, 3.0f,
-
-     -3.0f, 0.0f, -3.0f,
-      3.0f, 0.0f, -3.0f,
-    };
-
-    editorGrid = new EditorGrid(vertices, sizeof(vertices));
+    editorGrid = new EditorGrid(100, 100);
 }
 
 Game::~Game() {
@@ -45,12 +38,12 @@ Game::~Game() {
     }
 
     delete defaultIcon;
-    delete camera;
+    delete flyingCamera;
     delete editorGrid;
 }
 
 void Game::update() {
-
+    editorGrid->update(1);
 }
 
 void Game::draw() {
@@ -60,7 +53,7 @@ void Game::draw() {
             objects[i]->draw();
     }
 
-    editorGrid->draw(gridShader, camera);
+    editorGrid->draw(gridShader, flyingCamera);
 }
 
 void Game::delete_object(GameObject* gameObject) {

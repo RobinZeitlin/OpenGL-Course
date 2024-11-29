@@ -12,7 +12,7 @@ void Toolbar::draw(Game* game)
         if (ImGui::BeginMenu("Tools")) {
             if (game->selectedObject != nullptr) {
                 if (ImGui::MenuItem("Focus on Object - F")) {
-                    game->camera->focus_object(game->selectedObject->transform.position);
+                    gameInstance->flyingCamera->focus_object(game->selectedObject->transform.position);
                 }
             }
             ImGui::EndMenu();

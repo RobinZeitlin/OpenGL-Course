@@ -30,7 +30,7 @@ public:
 	std::vector<GameObject*> objects;
 	GameObject* selectedObject;
 
-	Camera* camera;
+	Camera* flyingCamera;
 
 	Texture* defaultIcon;
 	Shader* basicShader;
@@ -38,3 +38,5 @@ public:
 
 	EditorGrid* editorGrid;
 };
+
+extern Game* gameInstance;
