@@ -6,6 +6,9 @@ Game::Game(Camera* camera)
     basicShader = new Shader();
     basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 
+    gridShader = new Shader();
+    gridShader->Initialize("src/shaders/gridvertex.shader", "src/shaders/gridfragment.shader");
+
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
     for (size_t i = 0; i < 1; i++) {
@@ -57,7 +60,7 @@ void Game::draw() {
             objects[i]->draw();
     }
 
-    editorGrid->draw(basicShader, camera);
+    editorGrid->draw(gridShader, camera);
 }
 
 void Game::delete_object(GameObject* gameObject) {

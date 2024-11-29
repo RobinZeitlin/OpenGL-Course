@@ -34,6 +34,7 @@ public:
 
 	Texture* defaultIcon;
 	Shader* basicShader;
+	Shader* gridShader;
 
 	EditorGrid* editorGrid;
 };

@@ -44,7 +44,7 @@ void EditorGrid::draw(Shader* aShader, Camera* camera) {
     aShader->SetMatrix4(view, "view");
     aShader->SetMatrix4(model, "transform");
 
-    glLineWidth(5.0f);
+    glLineWidth(1.5f);
 
     glBindVertexArray(VAO);
     glDrawArrays(GL_LINES, 0, vertexCount);

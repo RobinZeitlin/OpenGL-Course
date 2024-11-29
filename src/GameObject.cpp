@@ -13,7 +13,12 @@ GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* cam
     transform.position = pos;
     transform.scale = glm::vec3(1);
 
-    mesh->apply_texture(texture);
+    if (mesh != nullptr) {
+        mesh->apply_texture(texture);
+    }
+    else {
+        std::cerr << "Error: mesh is nullptr" << std::endl;
+    }
 }
 
 void GameObject::draw()
