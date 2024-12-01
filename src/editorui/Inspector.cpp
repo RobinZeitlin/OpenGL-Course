@@ -13,8 +13,23 @@ Inspector::Inspector()
 
 void Inspector::draw(Game* game)
 {
-    ImGui::Begin("Inspector");
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse;
+    if (ImGui::Begin("Inspector", nullptr, window_flags))
+    {
+        if (ImGui::BeginTabBar("InspectorTabBar"))
+        {
+            if (ImGui::BeginTabItem("Components"))
+            {
+                draw_component_window(game);
+                ImGui::EndTabItem();
+            }
+            ImGui::EndTabBar();
+        }
+        ImGui::End();
+    }
+}
 
+void Inspector::draw_component_window(Game* game) {
     if (game->selectedObject != nullptr) {
         ImGui::InputText("Name", &game->selectedObject->name[0], game->selectedObject->name.size() + 1);
 
@@ -41,7 +56,7 @@ void Inspector::draw(Game* game)
         if (ImGui::CollapsingHeader("Rendering")) {
             ImGui::Text("Texture : ");
             ImGui::SameLine();
-            if (ImGui::ImageButton("Texture", game->selectedObject->texture->textureObject, ImVec2(50, 50))) { 
+            if (ImGui::ImageButton("Texture", game->selectedObject->texture->textureObject, ImVec2(50, 50))) {
                 ImGui::OpenPopup("TexturePopUp");
             }
 
@@ -105,5 +120,4 @@ void Inspector::draw(Game* game)
             }
         }
     }
-    ImGui::End();
 }

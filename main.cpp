@@ -22,7 +22,7 @@ GLFWwindow* window;
 
 Editor* editor;
 
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 1.0f, 3.0f));
 
 float lastX = 320, lastY = 240;
 bool firstMouse = true;
@@ -77,6 +77,8 @@ int main()
     }
 
     glEnable(GL_DEPTH_TEST);
+
+    glClearColor(0.1f, 0.1f, 0.11f, 1.0f);
 
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

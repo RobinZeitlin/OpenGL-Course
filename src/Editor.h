@@ -10,6 +10,8 @@
 #include "editorui/Hierarchy.h"
 #include "editorui/Inspector.h"
 #include "editorui/Toolbar.h"
+#include "editorui/Log.h"
+#include "editorui/ContentBrowser.h"
 
 class Game;
 
@@ -26,4 +28,6 @@ public:
 	Hierarchy* hierarchy;
 	Inspector* inspector;
 	Toolbar* toolbar;
+	Log* log;
+	ContentBrowser* contentBrowser;
 };

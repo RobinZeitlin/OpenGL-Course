@@ -37,6 +37,8 @@ void Editor::draw()
     hierarchy->draw(game, game->objects);
     inspector->draw(game);
     toolbar->draw(game);
+    log->draw(game);
+    contentBrowser->draw(game);
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

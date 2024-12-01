@@ -8,20 +8,26 @@
 
 void Hierarchy::draw(Game* game, std::vector<GameObject*> objects)
 {
-    ImGui::Begin("Hierarchy");
-
-    if (!objects.empty()) {
-        for (size_t i = 0; i < objects.size(); i++) {
-            auto thisObject = objects[i];
-            bool isSelected = (game->selectedObject == thisObject);
-            if (ImGui::Selectable(thisObject->name.c_str(), isSelected)) {
-                game->selectedObject = thisObject;
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse;
+    if (ImGui::Begin("Hierarchy", nullptr, window_flags))
+    {
+        if (ImGui::BeginTabBar("HierarchyTabBar"))
+        {
+            if (ImGui::BeginTabItem("Hierarchy"))
+            {
+                for (size_t i = 0; i < objects.size(); i++)
+                {
+                    auto thisObject = objects[i];
+                    bool isSelected = (game->selectedObject == thisObject);
+                    if (ImGui::Selectable(thisObject->name.c_str(), isSelected))
+                    {
+                        game->selectedObject = thisObject;
+                    }
+                }
+                ImGui::EndTabItem();
             }
-            if (!thisObject->bIsVisible) {
-                ImGui::SameLine();
-                ImGui::Text("-");
-            }
+            ImGui::EndTabBar();
         }
+        ImGui::End();
     }
-    ImGui::End();
 }
