@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 #include "camera/Camera.h"
 #include "engine/Transform.h"

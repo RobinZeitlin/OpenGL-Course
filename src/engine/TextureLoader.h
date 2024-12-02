@@ -26,7 +26,7 @@ public:
 		}
 
 		Texture* texture = new Texture((filePath + textureName + fileFormat).c_str());
-
+		texture->fileName = textureName;
 		std::cout << std::format("From {}{}{}", filePath, textureName, fileFormat) << std::endl;
 
 		textures[textureName] = texture;

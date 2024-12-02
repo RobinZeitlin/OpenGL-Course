@@ -17,6 +17,8 @@
 #include "engine/TextureLoader.h"
 #include "engine/EditorGrid.h"
 
+#include "engine/memory/MemoryStatus.h"
+
 class Game {
 public: 
 	Game(Camera* camera);
@@ -37,6 +39,7 @@ public:
 	Shader* gridShader;
 
 	EditorGrid* editorGrid;
+	MemoryStatus* memoryStatus;
 };
 
 extern Game* gameInstance;

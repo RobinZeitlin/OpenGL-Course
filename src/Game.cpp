@@ -16,7 +16,7 @@ Game::Game(Camera* camera)
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
     for (size_t i = 0; i < 1; i++) {
-        auto mesh = OBJLoader::get_instance().get_mesh("diamant");
+        auto mesh = OBJLoader::get_instance().get_mesh("starship");
 
         auto object = new GameObject(
             mesh,
@@ -30,6 +30,8 @@ Game::Game(Camera* camera)
     }
 
     editorGrid = new EditorGrid(100, 100);
+
+    memoryStatus = new MemoryStatus();
 }
 
 Game::~Game() {

@@ -53,13 +53,10 @@ void Mesh::Draw(Shader* aShader)
     aShader->Use();
     glBindVertexArray(VAO);
 
-    if (EBO == 0)
-    {
+    if (EBO == 0) {
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
     }
-    else
-    {
-
+    else {
         glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
     }
 

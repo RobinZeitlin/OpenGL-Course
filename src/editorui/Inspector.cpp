@@ -8,6 +8,8 @@
 
 #include "../Game.h"
 
+#include "../engine/memory/MemoryStatus.h"
+
 Inspector::Inspector()
 { }
 
@@ -21,6 +23,15 @@ void Inspector::draw(Game* game)
             if (ImGui::BeginTabItem("Components"))
             {
                 draw_component_window(game);
+                ImGui::EndTabItem();
+            }
+
+            if (ImGui::BeginTabItem("Profiler"))
+            {
+                auto [availablePhysical, availableVirtual] = MemoryStatus::get_instance().get_available_memory();
+
+                ImGui::Text(("Physical Memory: " + std::to_string(static_cast<int>(availablePhysical)) + " MB").c_str());
+                ImGui::Text(("Virtual Memory: " + std::to_string(static_cast<int>(availableVirtual)) + " MB").c_str());
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();

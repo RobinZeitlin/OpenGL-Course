@@ -55,4 +55,3 @@ void GameObject::change_mesh(Mesh* newMesh) {
     mesh = newMesh;
     mesh->apply_texture(texture);   
 }
-
