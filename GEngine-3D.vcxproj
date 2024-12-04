@@ -162,7 +162,7 @@
     <ClCompile Include="src\editorui\profiler\Profiler.cpp" />
     <ClCompile Include="src\editorui\ToolBar.cpp" />
     <ClCompile Include="src\engine\ComponentManager.cpp" />
-    <ClCompile Include="src\engine\components\Component.h" />
+    <ClCompile Include="src\engine\Component.h" />
     <ClCompile Include="src\engine\components\MeshComponent.cpp" />
     <ClCompile Include="src\engine\components\TestMoveComponent.cpp" />
     <ClCompile Include="src\engine\components\TransformComponent.cpp" />

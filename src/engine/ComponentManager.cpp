@@ -1,6 +1,6 @@
 #include "ComponentManager.h"
 
-#include "components/Component.h"
+#include "Component.h"
 
 #include "components/TransformComponent.h"
 #include "components/MeshComponent.h"

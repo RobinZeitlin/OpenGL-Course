@@ -7,7 +7,7 @@
 
 #include "camera/Camera.h"
 #include "engine/Transform.h"
-#include "engine/components/Component.h"
+#include "engine/Component.h"
 
 #include "engine/ComponentManager.h"
 

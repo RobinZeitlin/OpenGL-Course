@@ -96,7 +96,7 @@
     <ClCompile Include="src\engine\memory\MemoryStatus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\components\Component.h">
+    <ClCompile Include="src\engine\Component.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\components\MeshComponent.cpp">
