@@ -7,12 +7,12 @@
 #include "shaders/Shader.h"
 #include "rendering/Texture.h"
 
+#include "engine/components/TransformComponent.h"
 #include "engine/components/MeshComponent.h"
 #include "engine/components/TestMoveComponent.h"
 
 GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos) 
-    : mesh(mesh), shader(shader), texture(texture), camera(camera)
-{
+    : mesh(mesh), shader(shader), texture(texture), camera(camera) {
     transform.position = pos;
     transform.scale = glm::vec3(1);
 
@@ -23,15 +23,29 @@ GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* cam
         std::cerr << "Error: mesh is nullptr" << std::endl;
     }
 
-    components.push_back(new MeshComponent(this));
-    components.push_back(new TestMoveComponent(this));
+    compManager = new ComponentManager();
+    add_component("TransformComponent");
+    add_component("MeshComponent");
 }
 
-void GameObject::draw()
-{
+void GameObject::add_component(std::string nameOfComponent) {
+    auto component = compManager->create_component(nameOfComponent, this);
+    components[nameOfComponent] = component;
+}
+
+bool GameObject::is_component_already_added(std::string nameOfComponent) {
+    if (components[nameOfComponent] != nullptr) {
+        return true;
+    }
+
+    return false;
+}
+
+void GameObject::draw() {
     if (mesh == nullptr || shader == nullptr) return;
 
-    for (auto component : components) {
+    for (auto& [name, component] : components) {
+        if(component != nullptr)
         component->update();
     }
 

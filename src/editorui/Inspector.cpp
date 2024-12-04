@@ -5,6 +5,7 @@
 #include <imgui_impl_opengl3.h>
 
 #include <filesystem>
+#include <iostream>
 
 #include "../Game.h"
 
@@ -58,14 +59,51 @@ void Inspector::draw_component_window(Game* game) {
             game->delete_object(game->selectedObject);
         }
 
-        if (ImGui::CollapsingHeader("Transform")) {
-            ImGui::DragFloat3("Position", &game->selectedObject->transform.position[0], 0.1f);
-            ImGui::DragFloat3("Rotation", &game->selectedObject->transform.eulerAngles[0], 0.1f);
-            ImGui::DragFloat3("Scale", &game->selectedObject->transform.scale[0], 0.1f);
+        for (auto& [name, component] : game->selectedObject->components) {
+            if(component != nullptr)
+            component->draw_inspector_widget();
         }
 
-        for (auto components : game->selectedObject->components) {
-            components->draw_inspector_widget();
+        draw_add_component_button();
+    }
+}
+
+void Inspector::draw_add_component_button()
+{
+    std::string addComponentTxt = "Add Component +";
+    ImVec2 size = ImGui::CalcTextSize(addComponentTxt.c_str());
+    ImVec2 offset = ImVec2(8);
+    size.x += offset.x;
+    size.y += offset.y;
+
+    if (ImGui::Button(addComponentTxt.c_str(), size)) {
+        ImGui::OpenPopup("AddComponent");
+    }
+
+    if (ImGui::BeginPopup("AddComponent")) {
+        std::vector<std::string> items;
+        std::string filePath = "src/engine/components";
+        std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
+
+        for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+            if (entry.is_regular_file()) {
+                std::string textureName = entry.path().filename().string();
+                if (textureName.ends_with(".h")) {
+                    textureName.erase(textureName.size() - 2);
+
+                    if(gameInstance->selectedObject->is_component_already_added(textureName) == false)
+                    items.push_back(textureName);
+                }
+            }
         }
+
+        ImGui::Text("Files found : %s", std::to_string(items.size()).c_str());
+        for (auto item : items) {
+            if (ImGui::Selectable(item.c_str())) {
+                gameInstance->selectedObject->add_component(item);
+            }
+        }
+
+        ImGui::EndPopup();
     }
 }
