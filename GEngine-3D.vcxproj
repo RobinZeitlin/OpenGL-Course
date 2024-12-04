@@ -161,6 +161,9 @@
     <ClCompile Include="src\editorui\Log.cpp" />
     <ClCompile Include="src\editorui\profiler\Profiler.cpp" />
     <ClCompile Include="src\editorui\ToolBar.cpp" />
+    <ClCompile Include="src\engine\components\Component.h" />
+    <ClCompile Include="src\engine\components\MeshComponent.cpp" />
+    <ClCompile Include="src\engine\components\TestMoveComponent.cpp" />
     <ClCompile Include="src\engine\EditorGrid.cpp" />
     <ClCompile Include="src\engine\memory\MemoryStatus.cpp" />
     <ClCompile Include="src\engine\OBJLoader.cpp" />
@@ -195,6 +198,8 @@
     <ClInclude Include="src\editorui\Log.h" />
     <ClInclude Include="src\editorui\profiler\Profiler.h" />
     <ClInclude Include="src\editorui\Toolbar.h" />
+    <ClInclude Include="src\engine\components\MeshComponent.h" />
+    <ClInclude Include="src\engine\components\TestMoveComponent.h" />
     <ClInclude Include="src\engine\EditorGrid.h" />
     <ClInclude Include="src\engine\memory\MemoryStatus.h" />
     <ClInclude Include="src\engine\OBJLoader.h" />

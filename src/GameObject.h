@@ -6,6 +6,7 @@
 
 #include "camera/Camera.h"
 #include "engine/Transform.h"
+#include "engine/components/Component.h"
 
 class Mesh;
 class Shader;
@@ -18,6 +19,9 @@ public:
 	~GameObject() {
 		delete mesh;
 	}
+
+	std::vector<Component*> components;
+
 	void change_name(std::string newName) { name = newName; }
 	void draw();
 

@@ -7,6 +7,8 @@ Game* gameInstance = nullptr;
 Game::Game(Camera* camera) 
     : flyingCamera(camera) {
 
+    gameInstance = this;
+
     basicShader = new Shader();
     basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 

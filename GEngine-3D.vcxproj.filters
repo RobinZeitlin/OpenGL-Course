@@ -72,9 +72,6 @@
     <ClCompile Include="src\editorui\ToolBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\editorui\ContentSelector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\OBJLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,6 +82,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\EditorGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\editorui\ContentBrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\editorui\Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\editorui\profiler\Profiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\memory\MemoryStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\components\Component.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\components\MeshComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\components\TestMoveComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,9 +182,6 @@
     <ClInclude Include="src\engine\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\editorui\ContentSelector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\OBJLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,6 +192,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\EditorGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\editorui\ContentBrowser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\editorui\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\editorui\profiler\Profiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\memory\MemoryStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\components\MeshComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\components\TestMoveComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

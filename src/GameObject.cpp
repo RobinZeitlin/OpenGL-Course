@@ -7,6 +7,9 @@
 #include "shaders/Shader.h"
 #include "rendering/Texture.h"
 
+#include "engine/components/MeshComponent.h"
+#include "engine/components/TestMoveComponent.h"
+
 GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos) 
     : mesh(mesh), shader(shader), texture(texture), camera(camera)
 {
@@ -19,11 +22,18 @@ GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* cam
     else {
         std::cerr << "Error: mesh is nullptr" << std::endl;
     }
+
+    components.push_back(new MeshComponent(this));
+    components.push_back(new TestMoveComponent(this));
 }
 
 void GameObject::draw()
 {
     if (mesh == nullptr || shader == nullptr) return;
+
+    for (auto component : components) {
+        component->update();
+    }
 
     shader->Use();
 
