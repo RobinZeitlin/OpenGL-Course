@@ -6,20 +6,21 @@
 #include "../shaders/Shader.h"
 
 Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize)
+    : meshVertices(someVertices), meshIndices(someIndices), vertexCount(aVertexSize), indexCount(aIndexSize)
 {
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, aVertexSize, someVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, aVertexSize, meshVertices, GL_STATIC_DRAW);
 
     EBO = 0;
-    if (someIndices && aIndexSize > 0)
+    if (meshIndices && aIndexSize > 0)
     {
         glGenBuffers(1, &EBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, someIndices, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, meshIndices, GL_STATIC_DRAW);
         indexCount = aIndexSize / 4;
     }
     else {

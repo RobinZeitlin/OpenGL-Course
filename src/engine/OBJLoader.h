@@ -32,7 +32,7 @@ public:
 			return files[objName];
 		}
 		
-		return load_mesh(filePath + objName);
+		return load_mesh(objName);
 	}
 
 	Mesh* load_mesh(std::string objPath);

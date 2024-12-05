@@ -3,6 +3,7 @@
 #include "../rendering/Mesh.h"
 
 #include "../engine/memory/MemoryStatus.h"
+#include "../engine/MeshOptimizer.h"
 
 OBJLoader::~OBJLoader() {
     clean_up();
@@ -16,7 +17,7 @@ void OBJLoader::clean_up() {
     files.clear();
 }
 
-Mesh* OBJLoader::load_mesh(const std::string objPath) {
+Mesh* OBJLoader::load_mesh(const std::string objName) {
     float requiredMemory = 500.0f;
 
     auto [availablePhysical, availableVirtual] = MemoryStatus::get_instance().get_available_memory();
@@ -24,6 +25,8 @@ Mesh* OBJLoader::load_mesh(const std::string objPath) {
     if (availablePhysical < requiredMemory) {
         throw std::runtime_error("Insufficient physical memory to load the OBJ file.");
     }
+
+    std::string objPath = filePath + objName;
 
     std::ifstream file(objPath + fileFormat);
     std::string line;
@@ -85,5 +88,9 @@ Mesh* OBJLoader::load_mesh(const std::string objPath) {
     }
 
     Mesh* newMesh = new Mesh(vertexData.data(), vertexData.size() * sizeof(float), indices.data(), indices.size() * sizeof(unsigned int));
+    newMesh->meshName = objName;
+
+    MeshOptimizer::get_instance().optimize_mesh(newMesh);
+
     return newMesh;
 }

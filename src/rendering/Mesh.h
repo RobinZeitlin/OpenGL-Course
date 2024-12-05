@@ -1,10 +1,11 @@
 #pragma once
 
-class Shader;
-
 #include "Texture.h"
 
-#include "glm.hpp"
+#include <string>
+#include <glm.hpp>
+
+class Shader;
 
 class Mesh {
 public:
@@ -14,8 +15,14 @@ public:
     void Draw(Shader* aShader);
     void apply_texture(Texture* aTexture);
 
+    std::string meshName;
+
+    const float* meshVertices;
+    unsigned int* meshIndices;
+
+    size_t indexCount, vertexCount;
+
 protected:
     unsigned int VBO, VAO, EBO;
-    size_t indexCount, vertexCount;
     Texture* myTexture = nullptr;
 };
