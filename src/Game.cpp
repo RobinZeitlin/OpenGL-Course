@@ -17,8 +17,8 @@ Game::Game(Camera* camera)
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
-    for (size_t i = 0; i < 3; i++) {
-        auto mesh = OBJLoader::get_instance().get_mesh("diamant");
+    for (size_t i = 0; i < 1; i++) {
+        auto mesh = OBJLoader::get_instance().get_mesh("cube");
 
         auto object = new GameObject(
             mesh,

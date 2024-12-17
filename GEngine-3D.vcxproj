@@ -168,6 +168,7 @@
     <ClCompile Include="src\engine\components\TransformComponent.cpp" />
     <ClCompile Include="src\engine\EditorGrid.cpp" />
     <ClCompile Include="src\engine\memory\MemoryStatus.cpp" />
+    <ClCompile Include="src\engine\MeshOptimizer.cpp" />
     <ClCompile Include="src\engine\OBJLoader.cpp" />
     <ClCompile Include="src\engine\TextureLoader.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="src\engine\components\TransformComponent.h" />
     <ClInclude Include="src\engine\EditorGrid.h" />
     <ClInclude Include="src\engine\memory\MemoryStatus.h" />
+    <ClInclude Include="src\engine\MeshOptimizer.h" />
     <ClInclude Include="src\engine\OBJLoader.h" />
     <ClInclude Include="src\engine\TextureLoader.h" />
     <ClInclude Include="src\engine\Transform.h" />

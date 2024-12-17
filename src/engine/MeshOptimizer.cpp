@@ -30,7 +30,7 @@ void MeshOptimizer::optimize_mesh(Mesh* mesh) {
 
 	//write vertex data.
 
-	for (size_t i = 0; i < mesh->vertexCount / 4; i++) {
+	/*for (size_t i = 0; i < mesh->vertexCount / 4; i++) {
 		float x = mesh->meshVertices[i * 5 + 0];
 		float y = mesh->meshVertices[i * 5 + 1];
 		float z = mesh->meshVertices[i * 5 + 2];
@@ -45,7 +45,7 @@ void MeshOptimizer::optimize_mesh(Mesh* mesh) {
 		newFile << "vt "
 			<< u << " "
 			<< v << "\n";
-	}
+	}*/
 	
 	newFile.close();
 }

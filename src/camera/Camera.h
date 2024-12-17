@@ -27,6 +27,8 @@ public:
     float yaw;
     float pitch;
 
+    float speed = 10.0f;
+
     float mouseSensitivity;
 
 private:

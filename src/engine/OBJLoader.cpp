@@ -90,7 +90,5 @@ Mesh* OBJLoader::load_mesh(const std::string objName) {
     Mesh* newMesh = new Mesh(vertexData.data(), vertexData.size() * sizeof(float), indices.data(), indices.size() * sizeof(unsigned int));
     newMesh->meshName = objName;
 
-    MeshOptimizer::get_instance().optimize_mesh(newMesh);
-
     return newMesh;
 }
