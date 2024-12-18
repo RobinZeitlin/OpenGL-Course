@@ -13,6 +13,11 @@
 
 #include <glm.hpp>
 
+#include <thread>
+#include <future>
+
+#include "MeshInfo.h"
+
 class Mesh;
 
 class OBJLoader {
@@ -26,18 +31,16 @@ public:
 
 	void clean_up();
 
-	Mesh* get_mesh(std::string objName) {
-		if (files[objName])
-		{
-			return files[objName];
-		}
-		
-		return load_mesh(objName);
-	}
+	void create_thread(std::string objToLoad);
 
-	Mesh* load_mesh(std::string objPath);
+	Mesh* get_mesh(std::string objName);
+
+	meshInfo* load_mesh(std::string objPath);
 
 	std::unordered_map<std::string, Mesh*> files;
 	std::string filePath = "res/objmodels/";
 	std::string fileFormat = ".obj";
+
+private:
+	std::thread workThread;
 };

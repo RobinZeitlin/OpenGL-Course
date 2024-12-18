@@ -83,7 +83,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -169,6 +169,7 @@
     <ClCompile Include="src\engine\EditorGrid.cpp" />
     <ClCompile Include="src\engine\memory\MemoryStatus.cpp" />
     <ClCompile Include="src\engine\MeshOptimizer.cpp" />
+    <ClCompile Include="src\engine\messages\Message.cpp" />
     <ClCompile Include="src\engine\OBJLoader.cpp" />
     <ClCompile Include="src\engine\TextureLoader.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -207,7 +208,10 @@
     <ClInclude Include="src\engine\components\TransformComponent.h" />
     <ClInclude Include="src\engine\EditorGrid.h" />
     <ClInclude Include="src\engine\memory\MemoryStatus.h" />
+    <ClInclude Include="src\engine\MeshInfo.h" />
     <ClInclude Include="src\engine\MeshOptimizer.h" />
+    <ClInclude Include="src\engine\messages\MeshMessage.h" />
+    <ClInclude Include="src\engine\messages\Message.h" />
     <ClInclude Include="src\engine\OBJLoader.h" />
     <ClInclude Include="src\engine\TextureLoader.h" />
     <ClInclude Include="src\engine\Transform.h" />

@@ -69,7 +69,10 @@ void MeshComponent::draw_inspector_widget() {
                     Mesh* mesh = OBJLoader::get_instance().get_mesh(item.c_str());
 
                     auto sObj = gameInstance->selectedObject;
+                    if(mesh != nullptr)
                     sObj->change_mesh(mesh);
+
+                    std::cout << "Mesh changed" << std::endl;
                 }
             }
 

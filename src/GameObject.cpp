@@ -77,5 +77,6 @@ void GameObject::change_texture(Texture* newTexture) {
 
 void GameObject::change_mesh(Mesh* newMesh) {
     mesh = newMesh;
+    if (texture != nullptr);
     mesh->apply_texture(texture);   
 }
