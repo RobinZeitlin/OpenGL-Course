@@ -42,7 +42,9 @@ bool GameObject::is_component_already_added(std::string nameOfComponent) {
 }
 
 void GameObject::draw() {
-    if (mesh == nullptr || shader == nullptr) return;
+    if (mesh == nullptr || shader == nullptr) {
+        return;
+    }
 
     for (auto& [name, component] : components) {
         if(component != nullptr)

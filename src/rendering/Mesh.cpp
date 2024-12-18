@@ -2,11 +2,12 @@
 
 #include <glfw3.h>
 #include <glad/glad.h>
+#include <cstring>
 
 #include "../shaders/Shader.h"
 
 Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize)
-    : meshVertices(someVertices), meshIndices(someIndices), vertexCount(aVertexSize), indexCount(aIndexSize)
+    : meshVertices(someVertices), meshIndices(someIndices), vertexCount(aVertexSize / (5 * sizeof(float))), indexCount(aIndexSize / sizeof(unsigned int))
 {
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -15,16 +16,41 @@ Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndi
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, aVertexSize, meshVertices, GL_STATIC_DRAW);
 
-    EBO = 0;
     if (meshIndices && aIndexSize > 0)
     {
         glGenBuffers(1, &EBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, meshIndices, GL_STATIC_DRAW);
-        indexCount = aIndexSize / 4;
     }
     else {
-        vertexCount = aVertexSize / (sizeof(float));
+        EBO = 0;
+    }
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+}
+
+Mesh::Mesh(const Mesh& other)
+    : meshName(other.meshName), vertexCount(other.vertexCount), indexCount(other.indexCount), myTexture(other.myTexture)
+{
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertexCount * 5 * sizeof(float), other.meshVertices, GL_STATIC_DRAW);
+
+    if (other.EBO != 0)
+    {
+        glGenBuffers(1, &EBO);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned int), other.meshIndices, GL_STATIC_DRAW);
     }
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -47,7 +73,7 @@ Mesh::~Mesh()
 
 void Mesh::Draw(Shader* aShader)
 {
-    if (myTexture != NULL) {
+    if (myTexture != nullptr) {
         glBindTexture(GL_TEXTURE_2D, myTexture->textureObject);
     }
 

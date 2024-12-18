@@ -36,6 +36,9 @@ void MeshComponent::draw_inspector_widget() {
                     Texture* texture = TextureLoader::get_instance().get_texture(item.c_str());
 
                     auto sObj = gameInstance->selectedObject;
+
+                    if (sObj->mesh == nullptr) return;
+
                     sObj->change_texture(texture);
                 }
             }
