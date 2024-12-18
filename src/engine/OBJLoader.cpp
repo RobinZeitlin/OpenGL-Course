@@ -67,7 +67,7 @@ void OBJLoader::worker_thread() {
             delete message;
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // sleepy eepy thread 
+        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // sleepy eepy thread no more cpu for you
     }
 }
 
@@ -84,7 +84,6 @@ void OBJLoader::process_message(Message* message) {
 
                 std::lock_guard<std::mutex> lock(filesMutex); // once again lock the mutex to prevent multiple threads accessing
                 if (!files[meshName]) {
-                    std::cout << "Loading mesh: " << meshName << std::endl;
                     files[meshName] = load_mesh(meshMessage->get_mesh_name());
                 }
             }
@@ -99,7 +98,6 @@ void OBJLoader::process_message(Message* message) {
 
 
 Mesh* OBJLoader::load_mesh(const std::string objName) {
-    std::cout << "Loading mesh " << objName << std::endl;
     float requiredMemory = 500.0f;
 
     auto [availablePhysical, availableVirtual] = MemoryStatus::get_instance().get_available_memory();
@@ -107,6 +105,8 @@ Mesh* OBJLoader::load_mesh(const std::string objName) {
     if (availablePhysical < requiredMemory) {
         throw std::runtime_error("Insufficient physical memory to load the OBJ file.");
     }
+
+    std::cout << "Loading mesh: " << objName << std::endl;
 
     std::string objPath = filePath + objName;
 
@@ -173,8 +173,6 @@ Mesh* OBJLoader::load_mesh(const std::string objName) {
 
     Mesh* newMesh = new Mesh(vertexData.data(), vertexData.size() * sizeof(float), indices.data(), indices.size() * sizeof(unsigned int));
     newMesh->meshName = objName;
-
-    std::cout << "Loaded Model" << std::endl;
 
     return newMesh;
 }

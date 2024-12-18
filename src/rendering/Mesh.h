@@ -10,11 +10,12 @@ class Shader;
 class Mesh {
 public:
     Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
-    Mesh(const Mesh& other);
     ~Mesh();
 
     void Draw(Shader* aShader);
     void apply_texture(Texture* aTexture);
+
+    void construct_buffers(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
 
     std::string meshName;
 

@@ -42,7 +42,7 @@ bool GameObject::is_component_already_added(std::string nameOfComponent) {
 }
 
 void GameObject::draw() {
-    if (mesh == nullptr || shader == nullptr) {
+    if (mesh == nullptr || shader == nullptr || texture == nullptr) {
         return;
     }
 
@@ -78,6 +78,20 @@ void GameObject::change_texture(Texture* newTexture) {
 }
 
 void GameObject::change_mesh(Mesh* newMesh) {
+    if (newMesh == nullptr) {
+        std::cout << "Error: newMesh is nullptr!" << std::endl;
+        return;
+    }
+
+    std::cout << "Changing mesh to: " << newMesh << " (" << newMesh->meshName << ")" << std::endl;
+
     mesh = newMesh;
-    mesh->apply_texture(texture);   
+    mesh->construct_buffers(mesh->meshVertices, mesh->vertexCount, mesh->meshIndices, mesh->indexCount);
+
+    std::cout << "New mesh vertices address: " << mesh->meshVertices << std::endl;
+    std::cout << "New mesh vertex count: " << mesh->vertexCount << std::endl;
+    std::cout << "New mesh index count: " << mesh->indexCount << std::endl;
+
+    std::cout << "Applying texture: " << texture << std::endl;
+    mesh->apply_texture(texture);
 }
