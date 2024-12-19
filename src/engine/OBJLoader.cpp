@@ -1,5 +1,7 @@
 #include "OBJLoader.h"
+
 #include "../rendering/Mesh.h"
+
 #include "../engine/memory/MemoryStatus.h"
 #include "../engine/MeshOptimizer.h"
 
@@ -8,6 +10,10 @@ OBJLoader::~OBJLoader() {
 }
 
 void OBJLoader::clean_up() {
+    if (bLoadingThreadIsRunning && workThread.joinable()) {
+        workThread.join();
+    }
+    
     for (auto& [key, file] : files)
     {
         delete file;
@@ -15,29 +21,50 @@ void OBJLoader::clean_up() {
     files.clear();
 }
 
-void OBJLoader::create_thread(std::string objToLoad) {
-    std::promise<meshInfo*> promise;
-    std::future<meshInfo*> future = promise.get_future();
-
-    workThread = std::thread([this, objToLoad, promise = std::move(promise)]() mutable {
-        meshInfo* meshData = load_mesh(objToLoad);
-        promise.set_value(meshData);
-        });
-
-    workThread.detach();
-
-    meshInfo* result = future.get();
-
-    if (result) {
-
-        Mesh* newMesh = new Mesh(result->vertexData.data(), result->vertexData.size() * sizeof(float), result->indices.data(), result->indices.size() * sizeof(unsigned int));
-        newMesh->meshName = objToLoad;
-        files[objToLoad] = newMesh;
-
-        delete result;
+void OBJLoader::create_thread() {
+    if (workThread.joinable()) {
+        workThread.join();
     }
-    else {
-        std::cerr << "Failed to load mesh: " << objToLoad << std::endl;
+
+    while (!messages.empty()) {
+        std::cout << "messages exist!" << std::endl;
+
+        std::string objToLoad = messages.front()->get_mesh_name();
+        std::promise<meshInfo*> promise;
+        std::future<meshInfo*> future = promise.get_future();
+
+        workThread = std::thread([this, objToLoad, promise = std::move(promise)]() mutable {
+            meshInfo* meshData = load_mesh(objToLoad);
+            promise.set_value(meshData); 
+            });
+
+        workThread.detach();
+
+        meshInfo* result = future.get();
+
+        if (result) {
+            Mesh* newMesh = new Mesh(result->vertexData.data(), result->vertexData.size() * sizeof(float), result->indices.data(), result->indices.size() * sizeof(unsigned int));
+            newMesh->meshName = objToLoad;
+            files[objToLoad] = newMesh;
+
+            std::cout << "mesh Loaded : " << objToLoad << std::endl;
+            messages.pop();
+            delete result;
+        }
+        else {
+            std::cerr << "Failed to load mesh: " << objToLoad << std::endl;
+        }
+    }
+
+    bLoadingThreadIsRunning = false;
+}
+
+void OBJLoader::recieve_message(MeshMessage* newMessage) {
+    messages.push(newMessage);
+
+    if (!bLoadingThreadIsRunning) {
+        bLoadingThreadIsRunning = true;
+        create_thread();
     }
 }
 
@@ -47,7 +74,9 @@ Mesh* OBJLoader::get_mesh(std::string objName) {
         return files[objName];
     }
 
-    create_thread(objName);
+    auto* meshMessage = new MeshMessage(objName);
+    recieve_message(meshMessage);
+
     return nullptr;
 }
 

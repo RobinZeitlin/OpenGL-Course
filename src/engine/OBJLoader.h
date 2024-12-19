@@ -7,6 +7,7 @@
 #include <format>
 #include <unordered_map>
 #include <chrono>
+#include <queue>
 
 #include <fstream>
 #include <sstream>
@@ -17,6 +18,8 @@
 #include <future>
 
 #include "MeshInfo.h"
+
+#include "../engine/messages/MeshMessage.h"
 
 class Mesh;
 
@@ -30,16 +33,20 @@ public:
 	~OBJLoader();
 
 	void clean_up();
+	void create_thread();
 
-	void create_thread(std::string objToLoad);
+	void recieve_message(MeshMessage* newMessage);
 
 	Mesh* get_mesh(std::string objName);
-
 	meshInfo* load_mesh(std::string objPath);
+
+	std::queue<MeshMessage*> messages;
 
 	std::unordered_map<std::string, Mesh*> files;
 	std::string filePath = "res/objmodels/";
 	std::string fileFormat = ".obj";
+
+	bool bLoadingThreadIsRunning = false;
 
 private:
 	std::thread workThread;
