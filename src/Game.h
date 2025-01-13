@@ -26,7 +26,8 @@ public:
 
 	void update();
 	void draw();
-
+	
+	void spawn_object();
 	void delete_object(GameObject* gameObject);
 
 	std::vector<GameObject*> objects;

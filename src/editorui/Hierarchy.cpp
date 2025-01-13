@@ -15,7 +15,7 @@ void Hierarchy::draw(Game* game, std::vector<GameObject*> objects)
     {
         if (ImGui::Button("Add")) {
             ImGui::SetNextWindowSize(ImVec2(200, 150));
-            ImGui::OpenPopup("GameObjectPopup");
+            game->spawn_object();
         }
 
         if (ImGui::BeginPopup("GameObjectPopup")) {
