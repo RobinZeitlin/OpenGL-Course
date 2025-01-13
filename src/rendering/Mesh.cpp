@@ -21,15 +21,17 @@ Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndi
         glGenBuffers(1, &EBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, meshIndices, GL_STATIC_DRAW);
-        indexCount = aIndexSize / 4;
+        indexCount = aIndexSize / sizeof(unsigned int);
     }
     else {
-        vertexCount = aVertexSize / (sizeof(float));
+        vertexCount = aVertexSize / (5 * sizeof(float));
     }
 
+    // v point
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
+    // vt point
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 

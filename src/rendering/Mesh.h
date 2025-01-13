@@ -15,7 +15,7 @@ public:
     void Draw(Shader* aShader);
     void apply_texture(Texture* aTexture);
 
-    void rebind_buffers(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
+    //void rebind_buffers(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
 
     std::string meshName;
 

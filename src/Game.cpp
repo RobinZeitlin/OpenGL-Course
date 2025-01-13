@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "LightSource.h"
+
 Game* gameInstance = nullptr;
 
 Game::Game(Camera* camera) 
@@ -15,11 +17,15 @@ Game::Game(Camera* camera)
     gridShader = new Shader();
     gridShader->Initialize("src/shaders/gridvertex.shader", "src/shaders/gridfragment.shader");
 
+    OBJLoader::get_instance().get_mesh("cube");
+
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
     for (size_t i = 0; i < 1; i++) {
         spawn_object();
     }
+
+    spawn_light();
 
     editorGrid = new EditorGrid(100, 100);
 
@@ -62,6 +68,23 @@ void Game::spawn_object()
         glm::vec3(0, 0, 0));
 
     object->change_name(("Object" + std::to_string(objects.size())).c_str());
+    objects.push_back(object);
+}
+
+
+void Game::spawn_light()
+{
+    auto mesh = OBJLoader::get_instance().get_mesh("cube");
+
+    auto object = new LightSource(
+        mesh,
+        basicShader,
+        TextureLoader::get_instance().get_texture("defaulttexture"),
+        flyingCamera,
+        glm::vec3(0, 2, 0));
+
+    object->transform.scale *= 0.2f;
+    object->change_name(("Light" + std::to_string(objects.size())).c_str());
     objects.push_back(object);
 }
 

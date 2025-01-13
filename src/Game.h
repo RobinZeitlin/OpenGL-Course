@@ -19,6 +19,8 @@
 
 #include "engine/memory/MemoryStatus.h"
 
+class LightSource;
+
 class Game {
 public: 
 	Game(Camera* camera);
@@ -28,6 +30,7 @@ public:
 	void draw();
 	
 	void spawn_object();
+	void spawn_light();
 	void delete_object(GameObject* gameObject);
 
 	std::vector<GameObject*> objects;

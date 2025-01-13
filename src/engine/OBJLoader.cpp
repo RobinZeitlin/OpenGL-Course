@@ -42,6 +42,12 @@ void OBJLoader::create_thread() {
 
         meshInfo* result = future.get();
 
+        for (size_t i = 0; i < result->vertexData.size(); i += 5) {
+            std::cout << "Vertex: "
+                << result->vertexData[i] << ", " << result->vertexData[i + 1] << ", " << result->vertexData[i + 2]
+                << " | UV: " << result->vertexData[i + 3] << ", " << result->vertexData[i + 4] << std::endl;
+        }
+        
         if (result) {
             Mesh* newMesh = new Mesh(result->vertexData.data(), result->vertexData.size() * sizeof(float), result->indices.data(), result->indices.size() * sizeof(unsigned int));
             newMesh->meshName = objToLoad;
@@ -140,12 +146,12 @@ meshInfo* OBJLoader::load_mesh(const std::string objName) {
 
     std::vector<float> vertexData;
     for (size_t i = 0; i < vertices.size() / 3; ++i) {
-        vertexData.push_back(vertices[i * 3]);
-        vertexData.push_back(vertices[i * 3 + 1]);
-        vertexData.push_back(vertices[i * 3 + 2]);
+        vertexData.push_back(vertices[i * 3]); // x
+        vertexData.push_back(vertices[i * 3 + 1]); // y
+        vertexData.push_back(vertices[i * 3 + 2]); // z
 
-        vertexData.push_back(textureCoordinates[i * 2]);
-        vertexData.push_back(textureCoordinates[i * 2 + 1]);
+        vertexData.push_back(textureCoordinates[i * 2]); // u
+        vertexData.push_back(textureCoordinates[i * 2 + 1]); // v
     }
 
     meshInfo* newMeshData = new meshInfo();
