@@ -2,7 +2,7 @@
 
 #include <vector>
 
-struct meshInfo {
+struct MeshInfo {
     std::vector<float> vertexData;
     std::vector<unsigned int> indices;
 };

@@ -30,23 +30,17 @@ void OBJLoader::create_thread() {
         std::cout << "messages exist!" << std::endl;
 
         std::string objToLoad = messages.front()->get_mesh_name();
-        std::promise<meshInfo*> promise;
-        std::future<meshInfo*> future = promise.get_future();
+        std::promise<MeshInfo*> promise;
+        std::future<MeshInfo*> future = promise.get_future();
 
         workThread = std::thread([this, objToLoad, promise = std::move(promise)]() mutable {
-            meshInfo* meshData = load_mesh(objToLoad);
+            MeshInfo* meshData = load_mesh(objToLoad);
             promise.set_value(meshData); 
             });
 
         workThread.detach();
 
-        meshInfo* result = future.get();
-
-        for (size_t i = 0; i < result->vertexData.size(); i += 5) {
-            std::cout << "Vertex: "
-                << result->vertexData[i] << ", " << result->vertexData[i + 1] << ", " << result->vertexData[i + 2]
-                << " | UV: " << result->vertexData[i + 3] << ", " << result->vertexData[i + 4] << std::endl;
-        }
+        MeshInfo* result = future.get();
         
         if (result) {
             Mesh* newMesh = new Mesh(result->vertexData.data(), result->vertexData.size() * sizeof(float), result->indices.data(), result->indices.size() * sizeof(unsigned int));
@@ -86,7 +80,7 @@ Mesh* OBJLoader::get_mesh(std::string objName) {
     return nullptr;
 }
 
-meshInfo* OBJLoader::load_mesh(const std::string objName) {
+MeshInfo* OBJLoader::load_mesh(const std::string objName) {
     float requiredMemory = 500.0f;
 
     auto [availablePhysical, availableVirtual] = MemoryStatus::get_instance().get_available_memory();
@@ -105,9 +99,10 @@ meshInfo* OBJLoader::load_mesh(const std::string objName) {
         return nullptr;
     }
 
-    std::vector<float> vertices;
-    std::vector<float> textureCoordinates;
-    std::vector<unsigned int> indices;
+    std::vector<glm::vec3> positions;
+    std::vector<glm::vec2> uvs;
+    std::vector<glm::vec3> normals;
+    std::vector<unsigned int> vertexIndices;
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
@@ -116,16 +111,19 @@ meshInfo* OBJLoader::load_mesh(const std::string objName) {
         if (prefix == "v") {
             glm::vec3 vertexPoint;
             iss >> vertexPoint.x >> vertexPoint.y >> vertexPoint.z;
-            vertices.push_back(vertexPoint.x);
-            vertices.push_back(vertexPoint.y);
-            vertices.push_back(vertexPoint.z);
+            positions.push_back(vertexPoint);
         }
 
         if (prefix == "vt") {
             glm::vec2 textureCoordinate;
             iss >> textureCoordinate.x >> textureCoordinate.y;
-            textureCoordinates.push_back(textureCoordinate.x);
-            textureCoordinates.push_back(textureCoordinate.y);
+            uvs.push_back(textureCoordinate);
+        }
+
+        if (prefix == "vn") {
+            glm::vec3 normalCoordinates;
+            iss >> normalCoordinates.x >> normalCoordinates.y >> normalCoordinates.z;
+            normals.push_back(normalCoordinates);
         }
 
         if (prefix == "f") {
@@ -137,28 +135,32 @@ meshInfo* OBJLoader::load_mesh(const std::string objName) {
                 std::istringstream vert_word(vert_word_str);
                 int vert_index;
                 vert_word >> vert_index;
-                indices.push_back(vert_index - 1);
+                vertexIndices.push_back(vert_index - 1);
             }
         }
     }
 
     file.close();
 
-    std::vector<float> vertexData;
-    for (size_t i = 0; i < vertices.size() / 3; ++i) {
-        vertexData.push_back(vertices[i * 3]); // x
-        vertexData.push_back(vertices[i * 3 + 1]); // y
-        vertexData.push_back(vertices[i * 3 + 2]); // z
+    /*std::vector<float> vertexData;
+    for (size_t i = 0; i < positions.size(); ++i) {
+        vertexData.push_back(positions[i].x); // x
+        vertexData.push_back(positions[i].y); // x
+        vertexData.push_back(positions[i].z); // x
 
-        vertexData.push_back(textureCoordinates[i * 2]); // u
-        vertexData.push_back(textureCoordinates[i * 2 + 1]); // v
-    }
+        vertexData.push_back(uvs[i].x); // u
+        vertexData.push_back(uvs[i].y); // u
 
-    meshInfo* newMeshData = new meshInfo();
+        //vertexData.push_back(normalData[i * 3]); // nx
+        //vertexData.push_back(normalData[i * 3 + 1]); // ny
+        //vertexData.push_back(normalData[i * 3 + 2]); // nz
+    }*/
+
+    MeshInfo* newMeshData = new MeshInfo();
     newMeshData->indices = indices;
     newMeshData->vertexData = vertexData;
 
-    std::cout << "Finished Loading with vertice count " << vertices.size() << std::endl;
+    std::cout << "Finished Loading with vertice count " << positions.size() << std::endl;
 
     return newMeshData;
 }
