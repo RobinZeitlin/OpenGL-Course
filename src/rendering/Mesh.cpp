@@ -24,19 +24,19 @@ Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndi
         indexCount = aIndexSize / sizeof(unsigned int);
     }
     else {
-        vertexCount = aVertexSize / (5 * sizeof(float));
+        vertexCount = aVertexSize / (8 * sizeof(float));
     }
 
     // v point
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // vt point
+    // vn point
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // vn point
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+    // vt point
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);

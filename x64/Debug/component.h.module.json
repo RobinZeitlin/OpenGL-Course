@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Component.h.obj",
+            "outputs": [
+                "C:\\Projects\\OpenGL-Course\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "C:\\Projects\\OpenGL-Course\\x64\\Debug\\Component.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "src\\engine\\Component.h",
+                    "source-path": "c:\\projects\\opengl-course\\src\\engine\\component.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

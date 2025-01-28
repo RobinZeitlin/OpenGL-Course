@@ -1,8 +1,11 @@
 #pragma once
 
+#include "../rendering/Vertex.h"
+#include "../rendering/VertexIndex.h"
+
 #include <vector>
 
 struct MeshInfo {
-    std::vector<float> vertexData;
-    std::vector<unsigned int> indices;
+    std::vector<Vertex> vertexData;
+    std::vector<VertexIndex> indices;
 };

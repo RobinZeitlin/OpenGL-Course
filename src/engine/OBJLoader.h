@@ -28,7 +28,7 @@ class Mesh;
 class OBJLoader {
 public:
     // Vertex data: position (3 floats), UV (2 floats), normal (3 floats)
-    std::vector<float> vertexData = {
+    std::vector<float> testVertexData = {
         // Front face
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, // Vertex 1
          0.5f, -0.5f, -0.5f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, // Vertex 2
@@ -67,7 +67,7 @@ public:
     };
 
     // Index data (unsigned int)
-    std::vector<unsigned int> indices = {
+    std::vector<unsigned int> testIndices = {
         0, 1, 2, 0, 2, 3,    // Front face
         4, 5, 6, 4, 6, 7,    // Back face
         8, 9, 10, 8, 10, 11,  // Bottom face

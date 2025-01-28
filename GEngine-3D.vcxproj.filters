@@ -242,6 +242,12 @@
     <ClInclude Include="src\engine\MeshInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\rendering\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\VertexIndex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\vertex.shader" />

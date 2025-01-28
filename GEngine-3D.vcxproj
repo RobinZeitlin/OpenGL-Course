@@ -219,6 +219,8 @@
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\rendering\Mesh.h" />
     <ClInclude Include="src\rendering\Texture.h" />
+    <ClInclude Include="src\rendering\Vertex.h" />
+    <ClInclude Include="src\rendering\VertexIndex.h" />
     <ClInclude Include="src\shaders\Shader.h" />
   </ItemGroup>
   <ItemGroup>
