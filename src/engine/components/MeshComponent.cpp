@@ -20,7 +20,7 @@ void MeshComponent::draw_inspector_widget() {
         ImGui::SetNextWindowSize(ImVec2(200, 150));
         if (ImGui::BeginPopup("TexturePopUp")) {
             std::vector<std::string> items;
-            std::string filePath = "res/textures/";
+            std::string filePath = "../res/textures/";
             std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
 
             for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
@@ -53,7 +53,7 @@ void MeshComponent::draw_inspector_widget() {
         ImGui::SetNextWindowSize(ImVec2(200, 150));
         if (ImGui::BeginPopup("ModelPopUp")) {
             std::vector<std::string> items;
-            std::string filePath = "res/objmodels/";
+            std::string filePath = "../res/objmodels/";
             std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
 
             for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {

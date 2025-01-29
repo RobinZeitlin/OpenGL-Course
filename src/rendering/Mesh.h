@@ -10,6 +10,10 @@ class Shader;
 class Mesh {
 public:
     Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
+
+    Mesh()
+        : meshVertices(nullptr), meshIndices(nullptr), indexCount(0), vertexCount(0), VBO(0), VAO(0), EBO(0) {}
+
     ~Mesh();
 
     void Draw(Shader* aShader);

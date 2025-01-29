@@ -35,6 +35,6 @@ public:
 	}
 
 	std::unordered_map<std::string, Texture*> textures;
-	std::string filePath = "res/textures/";
+	std::string filePath = "../res/textures/";
 	std::string fileFormat = ".png";
 };

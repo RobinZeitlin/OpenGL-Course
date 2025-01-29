@@ -57,6 +57,8 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
 int main()
 {
+    std::filesystem::path currentPath = std::filesystem::current_path();
+
     if (!glfwInit())
     {
         std::cout << "Failed to initialize glfw" << std::endl;

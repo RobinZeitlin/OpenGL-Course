@@ -82,7 +82,7 @@ void Inspector::draw_add_component_button()
 
     if (ImGui::BeginPopup("AddComponent")) {
         std::vector<std::string> items;
-        std::string filePath = "src/engine/components";
+        std::string filePath = "../src/engine/components";
         std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
 
         for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {

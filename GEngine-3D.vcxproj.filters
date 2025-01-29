@@ -239,7 +239,7 @@
     <ClInclude Include="src\engine\messages\Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\MeshInfo.h">
+    <ClInclude Include="src\engine\MeshData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\rendering\Vertex.h">

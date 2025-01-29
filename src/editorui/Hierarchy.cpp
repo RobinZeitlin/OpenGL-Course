@@ -20,7 +20,7 @@ void Hierarchy::draw(Game* game, std::vector<GameObject*> objects)
 
         if (ImGui::BeginPopup("GameObjectPopup")) {
             std::vector<std::string> items;
-            std::string filePath = "res/textures/";
+            std::string filePath = "../res/textures/";
             std::filesystem::path folderPath = std::filesystem::current_path() / filePath;
 
             for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {

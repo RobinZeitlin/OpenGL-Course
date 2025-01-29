@@ -208,7 +208,7 @@
     <ClInclude Include="src\engine\components\TransformComponent.h" />
     <ClInclude Include="src\engine\EditorGrid.h" />
     <ClInclude Include="src\engine\memory\MemoryStatus.h" />
-    <ClInclude Include="src\engine\MeshInfo.h" />
+    <ClInclude Include="src\engine\MeshData.h" />
     <ClInclude Include="src\engine\MeshOptimizer.h" />
     <ClInclude Include="src\engine\messages\MeshMessage.h" />
     <ClInclude Include="src\engine\messages\Message.h" />

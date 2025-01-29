@@ -10,11 +10,17 @@
 #include <sstream>
 #include <fstream>
 
+OBJLoader::OBJLoader() : messageMutex(), filesMutex(), bLoadingThreadIsRunning(false)
+{
+}
+
 OBJLoader::~OBJLoader() {
     clean_up();
 }
 
 void OBJLoader::clean_up() {
+    bLoadingThreadIsRunning = false;
+
     if (bLoadingThreadIsRunning && workThread.joinable()) {
         workThread.join();
     }
@@ -25,100 +31,118 @@ void OBJLoader::clean_up() {
     files.clear();
 }
 
-void OBJLoader::create_thread() {
-    if (workThread.joinable()) {
-        workThread.join();
+void OBJLoader::start_worker_thread() {
+    if (!bLoadingThreadIsRunning) {
+        bLoadingThreadIsRunning = true;
+        workThread = std::thread(&OBJLoader::worker, this);
     }
+}
 
-    while (!messages.empty()) {
-        std::cout << "Messages exist. Processing..." << std::endl;
+void OBJLoader::worker() {
+    while (true) {
+        MeshMessage* message = nullptr;
 
-        std::string objToLoad = messages.front()->get_mesh_name();
-        std::promise<MeshInfo*> promise;
-        std::future<MeshInfo*> future = promise.get_future();
+        {
+            std::unique_lock<std::mutex> lock(messageMutex);
+            workerCondition.wait(lock, [this] {
+                return !messages.empty() || !bLoadingThreadIsRunning;
+                });
 
-        workThread = std::thread([this, objToLoad, promise = std::move(promise)]() mutable {
-            //std::cout << "Loading mesh: " << objToLoad << std::endl;
-            MeshInfo* meshData = load_mesh(objToLoad);
-            if (meshData) {
-                std::cout << "Mesh successfully loaded: " << objToLoad << std::endl;
+            if (!bLoadingThreadIsRunning && messages.empty()) {
+                return;
             }
-            else {
-                std::cerr << "Failed to load mesh: " << objToLoad << std::endl;
-            }
-            promise.set_value(meshData);
-        });
 
-        workThread.detach();
-
-        MeshInfo* result = future.get();
-
-        if (result) {
-            std::cout << "byte size : " << result->vertexData.size() * sizeof(Vertex) << std::endl;
-
-            std::cout << "Indices (1-based): ";
-            for (size_t i = 0; i < result->indices.size(); i++) {
-                std::cout << result->indices[i].p << "/"
-                    << result->indices[i].n << "/"
-                    << result->indices[i].t << ", ";
-            }
-            std::cout << std::endl;
-
-            Mesh* newMesh = new Mesh(
-                (float*)result->vertexData.data(), 
-                result->vertexData.size() * sizeof(Vertex), 
-                (unsigned int*)result->indices.data(),
-                result->indices.size() * sizeof(VertexIndex));
-
-            newMesh->meshName = objToLoad;
-            files[objToLoad] = newMesh;
-
-            std::cout << "Mesh stored: " << objToLoad << std::endl;
+            message = messages.front();
             messages.pop();
-            delete result;
         }
-        else {
-            std::cerr << "Failed to load mesh data for: " << objToLoad << std::endl;
+
+        if (message) {
+            std::string meshName = message->get_mesh_name();
+            delete message;
+
+            MeshData* newMeshData = load_mesh(meshName);
+            if (newMeshData) {
+                {
+                    std::lock_guard<std::mutex> lock(filesMutex);
+                    MeshToLoad* newMeshToLoad = new MeshToLoad(meshName, newMeshData);
+                    meshDataToLoad.push(newMeshToLoad);
+                }
+            }
+
+            {
+                std::lock_guard<std::mutex> lock(messageMutex);
+                messageSet.erase(meshName);
+            }
         }
     }
-
-    bLoadingThreadIsRunning = false;
 }
 
 void OBJLoader::recieve_message(MeshMessage* newMessage) {
-    std::cout << "Received message to load mesh: " << newMessage->get_mesh_name() << std::endl;
-    messages.push(newMessage);
 
-    if (!bLoadingThreadIsRunning) {
-        bLoadingThreadIsRunning = true;
-        create_thread();
+    std::string meshName = newMessage->get_mesh_name();
+
+    {
+        std::lock_guard<std::mutex> lock(messageMutex);
+
+        if (messageSet.find(meshName) == messageSet.end()) {
+            messages.push(newMessage);
+            messageSet.insert(meshName);
+            std::cout << "Message received: " << meshName << std::endl;
+        }
+        else {
+            delete newMessage;
+        }
     }
+
+    workerCondition.notify_one();
+
+    if (!bLoadingThreadIsRunning)
+        start_worker_thread();
 }
 
 Mesh* OBJLoader::get_mesh(std::string objName) {
+    std::lock_guard<std::mutex> lock(meshLoadingMutex);
+
     if (files[objName]) {
-        std::cout << "Returning loaded mesh: " << objName << std::endl;
+        std::cout << "Mesh finals vertexcount = " << files[objName]->vertexCount / 8 << std::endl;
+        std::cout << "Mesh finals indexcount = " << files[objName]->indexCount / 3 << std::endl;
         return files[objName];
     }
 
-    std::cout << "Mesh not found. Queuing load for: " << objName << std::endl;
-    auto* meshMessage = new MeshMessage(objName);
-    recieve_message(meshMessage);
+    recieve_message(new MeshMessage(objName));
+
+    while (!meshDataToLoad.empty()) {
+        MeshToLoad* newMeshToLoad = meshDataToLoad.front();
+        MeshData* newMeshData = newMeshToLoad->meshData;
+
+        Mesh* newMesh = new Mesh(
+            (float*)newMeshData->vertexData.data(),
+            newMeshData->vertexData.size() * sizeof(Vertex),
+            (unsigned int*)newMeshData->indices.data(),
+            newMeshData->indices.size() * sizeof(VertexIndex)
+        );
+
+        std::cout << "Mesh created" << std::endl;
+
+        files[newMeshToLoad->meshName] = newMesh;
+
+        meshDataToLoad.pop();
+
+        delete newMeshData;
+        delete newMeshToLoad;
+    }
 
     return nullptr;
 }
 
-MeshInfo* OBJLoader::load_mesh(const std::string objName) {
+MeshData* OBJLoader::load_mesh(const std::string objName) {
     float requiredMemory = 500.0f;
-
     auto [availablePhysical, availableVirtual] = MemoryStatus::get_instance().get_available_memory();
-
     if (availablePhysical < requiredMemory) {
         throw std::runtime_error("Insufficient physical memory to load the OBJ file.");
     }
 
     std::string objPath = filePath + objName;
-
     std::ifstream file(objPath + fileFormat);
     std::string line;
 
@@ -144,21 +168,18 @@ MeshInfo* OBJLoader::load_mesh(const std::string objName) {
             glm::vec3 vertexPoint;
             iss >> vertexPoint.x >> vertexPoint.y >> vertexPoint.z;
             positions.push_back(vertexPoint);
-            std::cout << "Vertex position: " << vertexPoint.x << ", " << vertexPoint.y << ", " << vertexPoint.z << std::endl;
         }
 
         if (prefix == "vt") {
             glm::vec2 textureCoordinate;
             iss >> textureCoordinate.x >> textureCoordinate.y;
             uvs.push_back(textureCoordinate);
-            std::cout << "Texture coordinate: " << textureCoordinate.x << ", " << textureCoordinate.y << std::endl;
         }
 
         if (prefix == "vn") {
             glm::vec3 normalCoordinates;
             iss >> normalCoordinates.x >> normalCoordinates.y >> normalCoordinates.z;
             normals.push_back(normalCoordinates);
-            std::cout << "Normal: " << normalCoordinates.x << ", " << normalCoordinates.y << ", " << normalCoordinates.z << std::endl;
         }
 
         if (prefix == "f") {
@@ -182,11 +203,6 @@ MeshInfo* OBJLoader::load_mesh(const std::string objName) {
                 positionIndices.push_back(position_index - 1);
                 uvIndices.push_back(uv_index - 1);
                 normalIndices.push_back(normal_index - 1);
-
-                // Debugging the face information
-                std::cout << "Face index: Position=" << position_index
-                    << ", UV=" << uv_index
-                    << ", Normal=" << normal_index << std::endl;
             }
         }
     }
@@ -196,40 +212,20 @@ MeshInfo* OBJLoader::load_mesh(const std::string objName) {
     std::vector<Vertex> vertexData;
     std::vector<VertexIndex> indices;
 
+    // insert the data into the vertexData and indices vectors
     for (int i = 0; i < positionIndices.size(); i++) {
         int pos_i = positionIndices[i];
         int uv_i = uvIndices[i];
         int normal_i = normalIndices[i];
 
-        glm::vec3 pos;
-        glm::vec2 uv;
-        glm::vec3 normal;
-
-        if (pos_i < 0 || pos_i >= positions.size()) {
-            pos = glm::vec3(-1.0f);
-        }
-        else {
-			pos = positions[pos_i];
-		}
-
-        if (uv_i < 0 || uv_i >= uvs.size()) {
-            uv = glm::vec2(-1.0f);
-        }
-        else {
-            uv = uvs[uv_i];
-        }
-
-        if (normal_i < 0 || normal_i >= normals.size()) {
-            normal = glm::vec3(-1.0f);
-        }
-        else {
-            normal = normals[normal_i];
-        }
-
+        glm::vec3 pos = positions[pos_i];
+        glm::vec2 uv = uvs[uv_i];
+        glm::vec3 normal = normals[normal_i];
+        
         Vertex v = {
             pos.x, pos.y, pos.z,
-            uv.x, uv.y,
-            normal.x, normal.y, normal.z,
+            0, 0,
+            0, 0, 0,
         };
 
         vertexData.push_back(v);
@@ -241,19 +237,33 @@ MeshInfo* OBJLoader::load_mesh(const std::string objName) {
         };
 
         indices.push_back(vi);
-
-
-        // Debugging the created vertex
-        std::cout << "Vertex created: Position=(" << pos.x << ", " << pos.y << ", " << pos.z
-            << "), UV=(" << uv.x << ", " << uv.y
-            << "), Normal=(" << normal.x << ", " << normal.y << ", " << normal.z << ")" << std::endl;
     }
 
-    MeshInfo* newMeshData = new MeshInfo();
+    std::cout << "Vertex Data:\n";
+    for (size_t i = 0; i < vertexData.size(); ++i) {
+        const auto& v = vertexData[i];
+        std::cout << "Vertex " << i << ": "
+            << "Position(" << v.x << ", " << v.y << ", " << v.z << "), "
+            << "UV(" << v.u << ", " << v.v << "), "
+            << "Normal(" << v.nx << ", " << v.ny << ", " << v.nz << ")\n";
+    }
+
+    std::cout << "VertexData size : " << vertexData.size() << std::endl;
+
+    std::cout << "\nIndices:\n";
+    for (size_t i = 0; i < indices.size(); ++i) {
+        const auto& idx = indices[i];
+        std::cout << "Index " << i << ": "
+            << "Position Index = " << idx.p << ", "
+            << "UV Index = " << idx.t << ", "
+            << "Normal Index = " << idx.n << "\n";
+    }
+
+    std::cout << "indice size : " << indices.size() / 3 << std::endl;
+
+    MeshData* newMeshData = new MeshData();
     newMeshData->indices = indices;
     newMeshData->vertexData = vertexData;
-
-    std::cout << "Finished Loading with vertex count " << positions.size() << std::endl;
 
     return newMeshData;
 }

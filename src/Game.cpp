@@ -12,18 +12,24 @@ Game::Game(Camera* camera)
     gameInstance = this;
 
     basicShader = new Shader();
-    basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
+    basicShader->Initialize("../src/shaders/vertex.shader", "../src/shaders/fragment.shader");
 
     gridShader = new Shader();
-    gridShader->Initialize("src/shaders/gridvertex.shader", "src/shaders/gridfragment.shader");
-
-    OBJLoader::get_instance().get_mesh("cube");
+    gridShader->Initialize("../src/shaders/gridvertex.shader", "../src/shaders/gridfragment.shader");
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
-    for (size_t i = 0; i < 1; i++) {
-        spawn_object();
-    }
+    //auto mesh = OBJLoader::get_instance().get_mesh("cube");
+
+    auto object = new GameObject(
+        nullptr,
+        basicShader,
+        TextureLoader::get_instance().get_texture("defaulttexture"),
+        flyingCamera,
+        glm::vec3(0, 0, 0));
+
+    object->change_name(("Object" + std::to_string(objects.size())).c_str());
+    objects.push_back(object);
 
     spawn_light();
 
@@ -58,34 +64,12 @@ void Game::draw() {
 
 void Game::spawn_object()
 {
-    auto mesh = OBJLoader::get_instance().get_mesh("cube");
-
-    auto object = new GameObject(
-        mesh,
-        basicShader,
-        TextureLoader::get_instance().get_texture("defaulttexture"),
-        flyingCamera,
-        glm::vec3(0, 0, 0));
-
-    object->change_name(("Object" + std::to_string(objects.size())).c_str());
-    objects.push_back(object);
 }
 
 
 void Game::spawn_light()
 {
-    auto mesh = OBJLoader::get_instance().get_mesh("cube");
 
-    auto object = new LightSource(
-        mesh,
-        basicShader,
-        TextureLoader::get_instance().get_texture("defaulttexture"),
-        flyingCamera,
-        glm::vec3(0, 2, 0));
-
-    object->transform.scale *= 0.2f;
-    object->change_name(("Light" + std::to_string(objects.size())).c_str());
-    objects.push_back(object);
 }
 
 void Game::delete_object(GameObject* gameObject) {
