@@ -38,6 +38,8 @@ public:
 
     void clean_up();
 
+    void create_thread();
+
     void start_worker_thread();
     void worker();
 

@@ -7,7 +7,7 @@
 
 struct MeshData {
     std::vector<Vertex> vertexData;
-    std::vector<VertexIndex> indices;
+    std::vector<unsigned int> indices;
 };
 
 struct MeshToLoad {
