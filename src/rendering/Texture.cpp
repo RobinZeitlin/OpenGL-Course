@@ -15,6 +15,8 @@ Texture::Texture(const char* aPath)
 
 	unsigned char* data = stbi_load(aPath, &width, &height, &channels, 0);
 
+	stbi_set_flip_vertically_on_load(true);
+
 	glGenTextures(1, &textureObject);
 	glBindTexture(GL_TEXTURE_2D, textureObject);
 
@@ -36,6 +38,6 @@ Texture::Texture(const char* aPath)
 		std::cout << "Could not load texture" << std::endl;
 	}
 
-	stbi_image_free(data);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	stbi_image_free(data);
 }

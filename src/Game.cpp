@@ -19,18 +19,6 @@ Game::Game(Camera* camera)
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
-    //auto mesh = OBJLoader::get_instance().get_mesh("cube");
-
-    auto object = new GameObject(
-        nullptr,
-        basicShader,
-        TextureLoader::get_instance().get_texture("defaulttexture"),
-        flyingCamera,
-        glm::vec3(0, 0, 0));
-
-    object->change_name(("Object" + std::to_string(objects.size())).c_str());
-    objects.push_back(object);
-
     spawn_light();
 
     editorGrid = new EditorGrid(100, 100);
@@ -64,6 +52,17 @@ void Game::draw() {
 
 void Game::spawn_object()
 {
+    auto mesh = OBJLoader::get_instance().get_mesh("cube");
+
+    auto object = new GameObject(
+        nullptr,
+        basicShader,
+        TextureLoader::get_instance().get_texture("defaulttexture"),
+        flyingCamera,
+        glm::vec3(0, 0, 0));
+
+    object->change_name(("Object" + std::to_string(objects.size())).c_str());
+    objects.push_back(object);
 }
 
 
