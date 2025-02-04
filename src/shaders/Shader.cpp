@@ -100,3 +100,21 @@ void Shader::SetMatrix4(glm::mat4 aMatrix, const std::string& aName)
 {
 	glUniformMatrix4fv(glGetUniformLocation(myShaderProgram, aName.c_str()), 1, GL_FALSE, glm::value_ptr(aMatrix));
 }
+
+void Shader::SetVector3f(glm::vec3 aVector3f, const std::string& aName)
+{
+	glUniform3fv(glGetUniformLocation(myShaderProgram, aName.c_str()), 1, glm::value_ptr(aVector3f));
+}
+
+void Shader::SetInt(int aInt, const std::string& aName)
+{
+	GLint location = glGetUniformLocation(myShaderProgram, aName.c_str());
+	if (location == -1)
+	{
+		std::cerr << "Warning: uniform '" << aName << "' doesn't exist in shader program." << std::endl;
+		return;
+	}
+
+	glUniform1i(location, aInt);
+}
+

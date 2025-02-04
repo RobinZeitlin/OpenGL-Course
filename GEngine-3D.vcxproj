@@ -233,6 +233,7 @@
     <Library Include="dependencies\glfw\lib\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\textures\boxtexture.png" />
     <Image Include="res\textures\defaulticon.png" />
     <Image Include="res\textures\defaulttexture.png" />
   </ItemGroup>

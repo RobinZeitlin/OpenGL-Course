@@ -25,9 +25,9 @@ public:
 			return textures[textureName];
 		}
 
-		Texture* texture = new Texture((filePath + textureName + fileFormat).c_str());
+		Texture* texture = new Texture((filePath + textureName).c_str());
 		texture->fileName = textureName;
-		std::cout << std::format("From {}{}{}", filePath, textureName, fileFormat) << std::endl;
+		std::cout << std::format("From {}{}", filePath, textureName) << std::endl;
 
 		textures[textureName] = texture;
 
@@ -36,5 +36,4 @@ public:
 
 	std::unordered_map<std::string, Texture*> textures;
 	std::string filePath = "../res/textures/";
-	std::string fileFormat = ".png";
 };

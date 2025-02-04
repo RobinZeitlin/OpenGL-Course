@@ -42,6 +42,8 @@ public:
 	Shader* basicShader;
 	Shader* gridShader;
 
+	GameObject* lightSource;
+
 	EditorGrid* editorGrid;
 	MemoryStatus* memoryStatus;
 };

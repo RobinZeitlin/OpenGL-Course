@@ -11,6 +11,8 @@
 #include "engine/components/MeshComponent.h"
 #include "engine/components/TestMoveComponent.h"
 
+#include <iostream>
+
 GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos) 
     : mesh(mesh), shader(shader), texture(texture), camera(camera) {
     transform.position = pos;
@@ -49,6 +51,15 @@ void GameObject::draw() {
         component->update();
     }
 
+    GLFWwindow* window = glfwGetCurrentContext();
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+        shader->SetInt(1, "shaderEnabled");
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+        shader->SetInt(0, "shaderEnabled");
+    }
+
     shader->Use();
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
@@ -63,9 +74,15 @@ void GameObject::draw() {
 
     transform = glm::scale(transform, this->transform.scale);
 
+    glm::vec3 lightPos = camera->lightSource->transform.position;
+
     shader->SetMatrix4(projection, "projection");
     shader->SetMatrix4(view, "view");
     shader->SetMatrix4(transform, "transform");
+
+    shader->SetVector3f(lightPos, "lightPos");
+    shader->SetVector3f(glm::vec3(1.0f, 1.0f, 1.0f), "lightColor");
+    shader->SetVector3f(camera->position, "viewPos");
 
     this->mesh->Draw(shader);
 }

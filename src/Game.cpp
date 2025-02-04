@@ -21,6 +21,8 @@ Game::Game(Camera* camera)
 
     spawn_light();
 
+    flyingCamera->lightSource = lightSource;
+
     editorGrid = new EditorGrid(100, 100);
 
     memoryStatus = new MemoryStatus();
@@ -57,7 +59,7 @@ void Game::spawn_object()
     auto object = new GameObject(
         nullptr,
         basicShader,
-        TextureLoader::get_instance().get_texture("defaulttexture"),
+        TextureLoader::get_instance().get_texture("boxtexture.png"),
         flyingCamera,
         glm::vec3(0, 0, 0));
 
@@ -68,7 +70,20 @@ void Game::spawn_object()
 
 void Game::spawn_light()
 {
+    auto mesh = OBJLoader::get_instance().get_mesh("cube");
 
+    auto object = new GameObject(
+        nullptr,
+        basicShader,
+        TextureLoader::get_instance().get_texture("light.png"),
+        flyingCamera,
+        glm::vec3(0, 0, 0));
+
+    object->change_name(("Light" + std::to_string(objects.size())).c_str());
+    objects.push_back(object);
+
+    lightSource = object;
+    lightSource->transform.scale = glm::vec3(0.1f, 0.1f, 0.1f);
 }
 
 void Game::delete_object(GameObject* gameObject) {
