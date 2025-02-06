@@ -10,6 +10,7 @@
 #include "engine/components/TransformComponent.h"
 #include "engine/components/MeshComponent.h"
 #include "engine/components/TestMoveComponent.h"
+#include "engine/components/LightComponent.h"
 
 #include <iostream>
 
@@ -47,8 +48,8 @@ void GameObject::draw() {
     if (mesh == nullptr || shader == nullptr) return;
 
     for (auto& [name, component] : components) {
-        if(component != nullptr)
-        component->update();
+        if (component != nullptr)
+            component->update();
     }
 
     GLFWwindow* window = glfwGetCurrentContext();
@@ -67,13 +68,13 @@ void GameObject::draw() {
     glm::mat4 transform = glm::mat4(1.0f);
 
     transform = glm::translate(transform, this->transform.position);
-
     transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.x), glm::vec3(1.0f, 0.0f, 0.0f));
     transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.y), glm::vec3(0.0f, 1.0f, 0.0f));
     transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.z), glm::vec3(0.0f, 0.0f, 1.0f));
-
     transform = glm::scale(transform, this->transform.scale);
 
+    LightComponent* lightComp = static_cast<LightComponent*>(camera->lightSource->components["LightComponent"]);
+    glm::vec3 lightColor = glm::vec3(lightComp->lightColor[0], lightComp->lightColor[1], lightComp->lightColor[2]);
     glm::vec3 lightPos = camera->lightSource->transform.position;
 
     shader->SetMatrix4(projection, "projection");
@@ -81,8 +82,15 @@ void GameObject::draw() {
     shader->SetMatrix4(transform, "transform");
 
     shader->SetVector3f(lightPos, "lightPos");
-    shader->SetVector3f(glm::vec3(1.0f, 1.0f, 1.0f), "lightColor");
+    shader->SetVector3f(lightColor, "lightColor");
     shader->SetVector3f(camera->position, "viewPos");
+
+    shader->SetInt(static_cast<int>(lightComp->type), "lightType");
+
+    if (lightComp->type == LightComponent::LightType::Spot) {
+        glm::vec3 lightDir = camera->lightSource->transform.get_forward();
+        shader->SetVector3f(lightDir, "lightDir");
+    }
 
     this->mesh->Draw(shader);
 }

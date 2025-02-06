@@ -84,6 +84,8 @@ void Game::spawn_light()
 
     lightSource = object;
     lightSource->transform.scale = glm::vec3(0.1f, 0.1f, 0.1f);
+
+    lightSource->add_component("LightComponent");
 }
 
 void Game::delete_object(GameObject* gameObject) {

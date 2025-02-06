@@ -163,6 +163,7 @@
     <ClCompile Include="src\editorui\ToolBar.cpp" />
     <ClCompile Include="src\engine\ComponentManager.cpp" />
     <ClCompile Include="src\engine\Component.h" />
+    <ClCompile Include="src\engine\components\LightComponent.cpp" />
     <ClCompile Include="src\engine\components\MeshComponent.cpp" />
     <ClCompile Include="src\engine\components\TestMoveComponent.cpp" />
     <ClCompile Include="src\engine\components\TransformComponent.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="src\editorui\profiler\Profiler.h" />
     <ClInclude Include="src\editorui\Toolbar.h" />
     <ClInclude Include="src\engine\ComponentManager.h" />
+    <ClInclude Include="src\engine\components\LightComponent.h" />
     <ClInclude Include="src\engine\components\MeshComponent.h" />
     <ClInclude Include="src\engine\components\TestMoveComponent.h" />
     <ClInclude Include="src\engine\components\TransformComponent.h" />

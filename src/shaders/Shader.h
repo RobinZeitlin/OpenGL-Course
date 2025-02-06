@@ -22,4 +22,5 @@ public:
 	void SetMatrix4(glm::mat4 aMatrix, const std::string& aName);
 	void SetVector3f(glm::vec3 aVector3f, const std::string& aName);
 	void SetInt(int aInt, const std::string& aName);
+	void SetFloat(float aFloat, const std::string& aName);
 };
