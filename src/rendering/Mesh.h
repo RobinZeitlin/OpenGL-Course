@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Texture.h"
-
 #include <string>
 #include <glm.hpp>
 
@@ -12,14 +11,14 @@ public:
     Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
 
     Mesh()
-        : meshVertices(nullptr), meshIndices(nullptr), indexCount(0), vertexCount(0), VBO(0), VAO(0), EBO(0) {}
+        : meshVertices(nullptr), meshIndices(nullptr), indexCount(0), vertexCount(0), VBO(0), VAO(0), EBO(0) {
+    }
 
-    ~Mesh();
+    virtual ~Mesh();  // Virtual destructor for polymorphism
 
-    void Draw(Shader* aShader);
-    void apply_texture(Texture* aTexture);
+    virtual void Draw(Shader* aShader);  // Pure virtual method, making Mesh an abstract class
 
-    //void rebind_buffers(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
+    virtual void apply_texture(Texture* aTexture);
 
     std::string meshName;
 

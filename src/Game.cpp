@@ -12,10 +12,19 @@ Game::Game(Camera* camera)
     gameInstance = this;
 
     basicShader = new Shader();
-    basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
+    basicShader->Initialize(
+        "src/shaders/vertex.shader", 
+        "src/shaders/fragment.shader");
 
     gridShader = new Shader();
-    gridShader->Initialize("src/shaders/gridvertex.shader", "src/shaders/gridfragment.shader");
+    gridShader->Initialize(
+        "src/shaders/gridvertex.shader", 
+        "src/shaders/gridfragment.shader");
+
+    gizmoShader = new Shader();
+    gizmoShader->Initialize(
+        "src/shaders/gizmovertex.shader", 
+        "src/shaders/gizmofragment.shader");
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
@@ -42,11 +51,13 @@ Game::~Game() {
 void Game::update() {
     editorGrid->update(1);
 
+    // update the objects
     for (size_t i = 0; i < objects.size(); i++) {
 		if (objects[i] == nullptr) continue;
 		objects[i]->update();
 	}
 
+    // check overlapping collision between the objects
     for (size_t i = 0; i < objects.size(); i++) {
         if (objects[i] == nullptr) continue;
 
@@ -57,7 +68,7 @@ void Game::update() {
 
                 CollisionComponent* collCompB = objects[j]->get_collision_component();
                 if (collCompB != nullptr) {
-                    collisionManager->CompareCollision(*collCompA, *collCompB);
+                    collisionManager->compare_collision(*collCompA, *collCompB);
                 }
             }
         }
@@ -85,6 +96,7 @@ void Game::spawn_object()
         flyingCamera,
         glm::vec3(0, 0, 0));
 
+    object->gizmoShader = gizmoShader;
     object->change_name(("Object" + std::to_string(objects.size())).c_str());
     objects.push_back(object);
 }

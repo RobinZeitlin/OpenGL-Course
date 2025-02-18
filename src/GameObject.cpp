@@ -58,15 +58,6 @@ void GameObject::draw() {
             component->update();
     }
 
-    GLFWwindow* window = glfwGetCurrentContext();
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-        shader->SetInt(1, "shaderEnabled");
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-        shader->SetInt(0, "shaderEnabled");
-    }
-
     shader->Use();
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);

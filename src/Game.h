@@ -42,6 +42,7 @@ public:
 	Texture* defaultIcon;
 	Shader* basicShader;
 	Shader* gridShader;
+	Shader* gizmoShader;
 
 	GameObject* lightSource;
 

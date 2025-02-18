@@ -58,6 +58,7 @@ void Mesh::Draw(Shader* aShader)
     }
 
     aShader->Use();
+
     glBindVertexArray(VAO);
 
     if (EBO == 0) {

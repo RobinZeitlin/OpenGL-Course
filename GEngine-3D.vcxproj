@@ -177,6 +177,7 @@
     <ClCompile Include="src\engine\TextureLoader.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\rendering\Gizmo.cpp" />
     <ClCompile Include="src\rendering\Mesh.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
     <ClCompile Include="src\shaders\Shader.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="src\engine\Transform.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\rendering\Gizmo.h" />
     <ClInclude Include="src\rendering\Mesh.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\rendering\Vertex.h" />

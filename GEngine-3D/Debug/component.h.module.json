@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "GEngine-3D\\Debug\\Component.h.obj",
+            "outputs": [
+                "C:\\Users\\robin\\Documents\\GitHub\\OpenGL-Course\\GEngine-3D\\Debug\\vc143.pdb",
+                "GEngine-3D\\Debug\\",
+                "C:\\Users\\robin\\Documents\\GitHub\\OpenGL-Course\\GEngine-3D\\Debug\\Component.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "src\\engine\\Component.h",
+                    "source-path": "c:\\users\\robin\\documents\\github\\opengl-course\\src\\engine\\component.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

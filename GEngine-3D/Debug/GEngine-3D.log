@@ -1,2 +1,8 @@
-﻿  Game.cpp
-  GEngine-3D.vcxproj -> Z:\Projects\OpenGL-Course\Debug\GEngine-3D.exe
+﻿  Scanning sources for module dependencies...
+  CollisionComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/CollisionComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  GEngine-3D.vcxproj -> C:\Users\robin\Documents\GitHub\OpenGL-Course\Debug\GEngine-3D.exe

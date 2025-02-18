@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\robin\\documents\\github\\opengl-course\\src\\engine\\component.h",
+        "ProvidedModule": "",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

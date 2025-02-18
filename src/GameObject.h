@@ -42,26 +42,16 @@ public:
 	bool bIsVisible = true;
 	std::string name = "Nothing";
 
-	std::vector<glm::vec3> lightPositions = {
-	glm::vec3(2.0f, 2.0f, 2.0f),
-	glm::vec3(-2.0f, 2.0f, 2.0f),
-	glm::vec3(2.0f, -2.0f, 2.0f),
-	glm::vec3(-2.0f, -2.0f, 2.0f)
-	};
-
-	std::vector<glm::vec3> lightColors = {
-		glm::vec3(1.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, 1.0f, 0.0f),
-		glm::vec3(0.0f, 0.0f, 1.0f),
-		glm::vec3(1.0f, 1.0f, 1.0f)
-	};
-
 	Transform transform;
 	Shader* shader;
 	Mesh* mesh;
 	Texture* texture;
 
+	Shader* gizmoShader;
+
 	ComponentManager* compManager;
-private:
+
 	Camera* camera;
+private:
+
 };

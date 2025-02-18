@@ -2,19 +2,24 @@
 
 #include "../Component.h"
 
-#include "../components/MeshComponent.h"
+class Mesh;
+class Shader;
 
 class CollisionComponent : public Component {
 public:
-	CollisionComponent(GameObject* attachedTo)
-		: Component(attachedTo) { }
+	CollisionComponent(GameObject* attachedTo);
 
 	void draw_inspector_widget() override;
 	void update() override;
 
-	void onTriggerEnter(GameObject* other);
+	void on_trigger_enter(GameObject* other);
 
-	float radius = 1.0f;
+	void set_shader(Shader* newShader);
+
+	Shader* shader = nullptr;
+	Mesh* mesh = nullptr;
+
+	float radius = 0.5f;
 
 	enum class CollisionType {
 		Sphere,
@@ -22,4 +27,5 @@ public:
 	};
 
 	CollisionType type = CollisionType::Sphere;
+	bool bMeshChanged = false;
 };

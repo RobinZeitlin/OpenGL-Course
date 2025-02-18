@@ -1,13 +1,9 @@
 #version 330 core
-out
-vec4 FragColor;
+out vec4 FragColor;
 
-in
-vec2 texCord;
-in
-vec3 FragPos;
-in
-vec3 Normal;
+in vec2 texCord;
+in vec3 FragPos;
+in vec3 Normal;
 
 uniform sampler2D _texture;
 uniform vec3 lightPos;

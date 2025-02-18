@@ -126,6 +126,9 @@
     <ClCompile Include="src\engine\CollisionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\rendering\Gizmo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glad\include\glad\glad.h">
@@ -264,6 +267,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Gizmo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,5 +7,6 @@ public:
 	CollisionManager() { }
 	~CollisionManager() { }
 
-	void CompareCollision(CollisionComponent a, CollisionComponent b);
+	void update();
+	void compare_collision(CollisionComponent a, CollisionComponent b);
 };

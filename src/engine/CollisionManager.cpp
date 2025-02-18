@@ -6,7 +6,7 @@
 #include <iostream>
 #include <glm.hpp>
 
-void CollisionManager::CompareCollision(CollisionComponent a, CollisionComponent b)
+void CollisionManager::compare_collision(CollisionComponent a, CollisionComponent b)
 {
 	if (a.gameObject == nullptr || b.gameObject == nullptr) {
 		std::cout << "Error: CollisionComponent has no GameObject" << std::endl;
@@ -21,8 +21,8 @@ void CollisionManager::CompareCollision(CollisionComponent a, CollisionComponent
 	if (a.type == CollisionComponent::CollisionType::Sphere && 
 		b.type == CollisionComponent::CollisionType::Sphere) {
 		if (glm::distance(aPos, bPos) < a.radius + b.radius) {
-			a.onTriggerEnter(b.gameObject);
-			b.onTriggerEnter(a.gameObject);
+			a.on_trigger_enter(b.gameObject);
+			b.on_trigger_enter(a.gameObject);
 		}
 	}
 
@@ -36,8 +36,8 @@ void CollisionManager::CompareCollision(CollisionComponent a, CollisionComponent
         if (aPos.x < bPos.x + bSize.x && aPos.x + aSize.x > bPos.x &&
             aPos.y < bPos.y + bSize.y && aPos.y + aSize.y > bPos.y &&
             aPos.z < bPos.z + bSize.z && aPos.z + aSize.z > bPos.z) {
-            a.onTriggerEnter(b.gameObject);
-            b.onTriggerEnter(a.gameObject);
+            a.on_trigger_enter(b.gameObject);
+            b.on_trigger_enter(a.gameObject);
         }
     }
 
@@ -49,15 +49,15 @@ void CollisionManager::CompareCollision(CollisionComponent a, CollisionComponent
             bPos + bSize / 2.0f);
         float distance = glm::distance(aPos, closestPoint);
         if (distance < a.radius) {
-            a.onTriggerEnter(b.gameObject);
-            b.onTriggerEnter(a.gameObject);
+            a.on_trigger_enter(b.gameObject);
+            b.on_trigger_enter(a.gameObject);
         }
     }
 
     // box-sphere collision
     else if (a.type == CollisionComponent::CollisionType::Box &&
         b.type == CollisionComponent::CollisionType::Sphere) {
-        CompareCollision(b, a);
+        compare_collision(b, a);
     }
     #pragma endregion
 

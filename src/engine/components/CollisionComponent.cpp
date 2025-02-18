@@ -1,5 +1,7 @@
 #include "CollisionComponent.h"
 
+#include <glm.hpp>
+
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
@@ -8,6 +10,21 @@
 #include <filesystem>
 
 #include "../../Game.h"
+
+void CollisionComponent::set_shader(Shader* newShader) {
+    shader = newShader;
+}
+
+CollisionComponent::CollisionComponent(GameObject* attachedTo) : Component(attachedTo) {
+    if (attachedTo->gizmoShader != nullptr)
+        set_shader(attachedTo->gizmoShader);
+
+    mesh = OBJLoader::get_instance().get_mesh("sphere");
+
+    if (mesh != nullptr) {
+        std::cout << "Successfully loaded mesh" << std::endl;
+    }
+}
 
 void CollisionComponent::draw_inspector_widget() {
     if (ImGui::CollapsingHeader("Collision")) {
@@ -24,7 +41,6 @@ void CollisionComponent::draw_inspector_widget() {
         }
 
         if (type == CollisionType::Sphere) {
-            radius = 1.0f;
             ImGui::SliderFloat("Radius", &radius, 0.1f, 5.0f, "%.2f");
 
             float window_width = ImGui::GetContentRegionAvail().x;
@@ -80,10 +96,33 @@ void CollisionComponent::draw_inspector_widget() {
 
 
 void CollisionComponent::update() {
+    if (mesh == nullptr || shader == nullptr || gameObject->camera == nullptr) return;
 
+
+    shader->Use();
+
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
+    glm::mat4 view = gameObject->camera->GetViewMatrix();
+    glm::mat4 transform = glm::mat4(1.0f);
+
+    transform = glm::translate(transform, gameObject->transform.position);
+    transform = glm::rotate(transform, glm::radians(gameObject->transform.eulerAngles.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    transform = glm::rotate(transform, glm::radians(gameObject->transform.eulerAngles.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    transform = glm::rotate(transform, glm::radians(gameObject->transform.eulerAngles.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    transform = glm::scale(transform, glm::vec3(radius));
+
+    shader->SetMatrix4(projection, "projection");
+    shader->SetMatrix4(view, "view");
+    shader->SetMatrix4(transform, "transform");
+
+    glm::vec3 objectColor = glm::vec3(1.0f, 0.5f, 0.2f);
+    shader->SetVector3f(objectColor, "objectColor");
+
+    this->mesh->Draw(shader);
 }
 
-void CollisionComponent::onTriggerEnter(GameObject* other)
+void CollisionComponent::on_trigger_enter(GameObject* other)
 {
     std::cout << "Collision with" << other->name << std::endl;
 }
+
