@@ -50,7 +50,7 @@ public:
 
     std::queue<MeshMessage*> messages;
     std::unordered_map<std::string, Mesh*> files;
-    std::string filePath = "../res/objmodels/";
+    std::string filePath = "res/objmodels/";
     std::string fileFormat = ".obj";
 
     bool bLoadingThreadIsRunning = false;

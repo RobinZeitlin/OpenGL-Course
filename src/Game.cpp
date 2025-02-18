@@ -12,10 +12,10 @@ Game::Game(Camera* camera)
     gameInstance = this;
 
     basicShader = new Shader();
-    basicShader->Initialize("../src/shaders/vertex.shader", "../src/shaders/fragment.shader");
+    basicShader->Initialize("src/shaders/vertex.shader", "src/shaders/fragment.shader");
 
     gridShader = new Shader();
-    gridShader->Initialize("../src/shaders/gridvertex.shader", "../src/shaders/gridfragment.shader");
+    gridShader->Initialize("src/shaders/gridvertex.shader", "src/shaders/gridfragment.shader");
 
     defaultIcon = TextureLoader::get_instance().get_texture("defaulticon");
 
@@ -23,9 +23,10 @@ Game::Game(Camera* camera)
 
     flyingCamera->lightSource = lightSource;
 
-    editorGrid = new EditorGrid(100, 100);
+    editorGrid = new EditorGrid(15, 15);
 
     memoryStatus = new MemoryStatus();
+    collisionManager = new CollisionManager();
 }
 
 Game::~Game() {
@@ -40,6 +41,27 @@ Game::~Game() {
 
 void Game::update() {
     editorGrid->update(1);
+
+    for (size_t i = 0; i < objects.size(); i++) {
+		if (objects[i] == nullptr) continue;
+		objects[i]->update();
+	}
+
+    for (size_t i = 0; i < objects.size(); i++) {
+        if (objects[i] == nullptr) continue;
+
+        CollisionComponent* collCompA = objects[i]->get_collision_component();
+        if (collCompA != nullptr) {
+            for (size_t j = i + 1; j < objects.size(); j++) {
+                if (objects[j] == nullptr) continue;
+
+                CollisionComponent* collCompB = objects[j]->get_collision_component();
+                if (collCompB != nullptr) {
+                    collisionManager->CompareCollision(*collCompA, *collCompB);
+                }
+            }
+        }
+    }
 }
 
 void Game::draw() {

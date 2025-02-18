@@ -120,6 +120,12 @@
     <ClCompile Include="src\engine\components\LightComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\components\CollisionComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\CollisionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glad\include\glad\glad.h">
@@ -254,6 +260,12 @@
     <ClInclude Include="src\engine\components\LightComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine\components\CollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\vertex.shader" />
@@ -272,6 +284,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\boxtexture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\CollisionTexture.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

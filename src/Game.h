@@ -18,6 +18,7 @@
 #include "engine/EditorGrid.h"
 
 #include "engine/memory/MemoryStatus.h"
+#include "engine/CollisionManager.h"
 
 class LightSource;
 
@@ -46,6 +47,7 @@ public:
 
 	EditorGrid* editorGrid;
 	MemoryStatus* memoryStatus;
+	CollisionManager* collisionManager;
 };
 
 extern Game* gameInstance;

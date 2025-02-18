@@ -11,6 +11,7 @@
 #include "engine/components/MeshComponent.h"
 #include "engine/components/TestMoveComponent.h"
 #include "engine/components/LightComponent.h"
+#include "engine/components/CollisionComponent.h"
 
 #include <iostream>
 
@@ -29,6 +30,11 @@ GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* cam
     compManager = new ComponentManager();
     add_component("TransformComponent");
     add_component("MeshComponent");
+}
+
+CollisionComponent* GameObject::get_collision_component()
+{
+    return is_component_already_added("CollisionComponent") ? static_cast<CollisionComponent*>(components["CollisionComponent"]) : nullptr;
 }
 
 void GameObject::add_component(std::string nameOfComponent) {
@@ -93,6 +99,14 @@ void GameObject::draw() {
     }
 
     this->mesh->Draw(shader);
+}
+
+void GameObject::update()
+{
+    for (auto& [name, component] : components) {
+		if (component != nullptr)
+			component->update();
+	}
 }
 
 void GameObject::change_texture(Texture* newTexture) {

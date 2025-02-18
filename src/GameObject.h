@@ -14,6 +14,7 @@
 class Mesh;
 class Shader;
 class Texture;
+class CollisionComponent;
 
 class GameObject {
 public:
@@ -28,12 +29,15 @@ public:
 
 	void change_name(std::string newName) { name = newName; }
 	void draw();
+	void update();
 
 	void change_texture(Texture* newTexture);
 	void change_mesh(Mesh* newMesh);
 
 	void add_component(std::string nameOfComponent);
 	bool is_component_already_added(std::string nameOfComponent);
+
+	CollisionComponent* get_collision_component();
 
 	bool bIsVisible = true;
 	std::string name = "Nothing";
