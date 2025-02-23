@@ -51,6 +51,10 @@ void OBJLoader::create_thread() {
         if (result) {
             Mesh* newMesh = new Mesh((float*)result->vertexData.data(), result->vertexData.size() * sizeof(Vertex), result->indices.data(), result->indices.size() * sizeof(unsigned int));
             newMesh->meshName = objToLoad;
+
+			newMesh->meshVerticesList = result->vertexData;
+			newMesh->meshIndiceList = result->indices;
+
             files[objToLoad] = newMesh;
 
             std::cout << "mesh Loaded : " << objToLoad << std::endl;

@@ -23,14 +23,9 @@ void Toolbar::draw(Game* game)
 
             if (game->selectedObject != nullptr) {
                 if (ImGui::Button("Optimize Selected Objects Mesh")) {
-                    ImGui::OpenPopup("OptimizeMesh");
+                    MeshOptimizer optimizer = MeshOptimizer::get_instance();
+                    optimizer.optimize_mesh(game->selectedObject->mesh);
                 }
-            }
-
-            if (ImGui::BeginPopup("OptimizeMesh")) {
-                MeshOptimizer optimizer = MeshOptimizer::get_instance();
-                optimizer.optimize_mesh(game->selectedObject->mesh);
-                ImGui::EndPopup();
             }
 
             if (ImGui::Button("Camera Settings")) {

@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Texture.h"
+
 #include <string>
 #include <glm.hpp>
+
+#include "../rendering/Vertex.h"
 
 class Shader;
 
@@ -24,6 +27,9 @@ public:
 
     const float* meshVertices;
     unsigned int* meshIndices;
+
+    std::vector<Vertex> meshVerticesList;
+    std::vector<unsigned int> meshIndiceList;
 
     size_t indexCount, vertexCount;
 

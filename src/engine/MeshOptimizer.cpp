@@ -1,91 +1,63 @@
 #include "MeshOptimizer.h"
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <unordered_map>
-
 #include "../rendering/Mesh.h"
 #include "../rendering/Vertex.h"
 
 MeshOptimizer::MeshOptimizer() {}
-
 MeshOptimizer::~MeshOptimizer() {}
 
 void MeshOptimizer::optimize_mesh(Mesh* mesh) {
-    std::string meshName = mesh->meshName;
-    std::string fullFilePath = filePath + meshName + "Optimized.obj";
-
-    std::ofstream newFile(fullFilePath.c_str());
-
-    if (!newFile.is_open()) {
-        std::cerr << "Failed to open file: " << fullFilePath << std::endl;
+    if (!mesh || mesh->meshVerticesList.empty()) {
+        std::cout << "[Error] Mesh is null or contains no vertices." << std::endl;
         return;
     }
-    else {
-        std::cout << "File opened correctly: " << fullFilePath << std::endl;
+
+    std::string dirPath = "res/objmodels/";
+    std::string filePath = dirPath + mesh->meshName + "_Optimized.obj";
+
+    std::ifstream fileCheck(filePath);
+    if (fileCheck.good()) {
+        std::cout << "[Warning] File already exists: " << filePath << std::endl;
+        return;
     }
 
-    // To ensure unique vertices, we'll use a map (similar to OBJLoader)
-    std::unordered_map<int64_t, int> vertexMap;
+    std::ofstream newFile(filePath);
+    if (!newFile) {
+        std::cout << "[Error] Failed to open file for writing: " << filePath << std::endl;
+        return;
+    }
+
+    std::unordered_map<Vertex, unsigned int, VertexHash> vertexMap;
     std::vector<Vertex> optimizedVertices;
     std::vector<unsigned int> optimizedIndices;
 
-    // Write vertices and texture coordinates
-    for (size_t i = 0; i < mesh->vertexCount / 8; ++i) {  // Correcting to 8 for position, tex, and normals
-        float x = mesh->meshVertices[i * 8 + 0];
-        float y = mesh->meshVertices[i * 8 + 1];
-        float z = mesh->meshVertices[i * 8 + 2];
-        float u = mesh->meshVertices[i * 8 + 3];
-        float v = mesh->meshVertices[i * 8 + 4];
-        float nx = mesh->meshVertices[i * 8 + 5];
-        float ny = mesh->meshVertices[i * 8 + 6];
-        float nz = mesh->meshVertices[i * 8 + 7];
+    optimizedVertices.reserve(mesh->meshVerticesList.size());
+    optimizedIndices.reserve(mesh->meshIndiceList.size());
 
-        // Check if the vertex already exists
-        glm::vec3 pos(x, y, z);
-        glm::vec2 tex(u, v);
-        glm::vec3 normal(nx, ny, nz);
-
-        Vertex vtx = { pos.x, pos.y, pos.z, tex.x, tex.y, normal.x, normal.y, normal.z };
-
-        // Generate a unique key for the vertex, including normals
-        int64_t key = (static_cast<int64_t>(vtx.x) << 56) |
-            (static_cast<int64_t>(vtx.y) << 48) |
-            (static_cast<int64_t>(vtx.z) << 40) |
-            (static_cast<int64_t>(vtx.u) << 32) |
-            (static_cast<int64_t>(vtx.v) << 24) |
-            (static_cast<int64_t>(vtx.nx) << 16) |
-            (static_cast<int64_t>(vtx.ny) << 8) |
-            static_cast<int64_t>(vtx.nz);
-
-        auto found = vertexMap.find(key);
-        if (found == vertexMap.end()) {
-            // Add new vertex if not already present
-            vertexMap[key] = optimizedVertices.size();
-            optimizedVertices.push_back(vtx);
+    for (const auto& vtx : mesh->meshVerticesList) {
+        if (std::isnan(vtx.x) || std::isnan(vtx.y) || std::isnan(vtx.z)) {
+            std::cout << "[Warning] Skipping NaN vertex." << std::endl;
+            continue;
         }
 
-        // After ensuring uniqueness, add the vertex index
-        optimizedIndices.push_back(vertexMap[key]);
+        auto [it, inserted] = vertexMap.emplace(vtx, static_cast<unsigned int>(optimizedVertices.size()));
+        if (inserted) optimizedVertices.push_back(vtx);
+        optimizedIndices.push_back(it->second + 1);
     }
 
-    // Write vertex data in OBJ format
-    for (const auto& vtx : optimizedVertices) {
-        newFile << "v " << vtx.x << " " << vtx.y << " " << vtx.z << "\n";
-        newFile << "vt " << vtx.u << " " << vtx.v << "\n";
-        newFile << "vn " << vtx.nx << " " << vtx.ny << " " << vtx.nz << "\n";
+    for (const auto& v : optimizedVertices) {
+        newFile << "v " << v.x << " " << v.y << " " << v.z << "\n"
+            << "vt " << v.u << " " << v.v << "\n"
+            << "vn " << v.nx << " " << v.ny << " " << v.nz << "\n";
     }
 
-    // Write face data (indices)
-    for (size_t i = 0; i < optimizedIndices.size() / 3; ++i) {
-        unsigned int idx1 = optimizedIndices[i * 3 + 0] + 1;
-        unsigned int idx2 = optimizedIndices[i * 3 + 1] + 1;
-        unsigned int idx3 = optimizedIndices[i * 3 + 2] + 1;
-
-        newFile << "f " << idx1 << " " << idx2 << " " << idx3 << "\n";
+    for (size_t i = 0; i + 2 < optimizedIndices.size(); i += 3) {
+        newFile << "f " << optimizedIndices[i] << " "
+            << optimizedIndices[i + 1] << " "
+            << optimizedIndices[i + 2] << "\n";
     }
 
-    newFile.close();
-    std::cout << "Optimized mesh written to: " << fullFilePath << std::endl;
+    std::cout << "[Success] Optimized mesh written to: " << filePath << std::endl;
 }
-
