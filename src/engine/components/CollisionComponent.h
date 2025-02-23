@@ -23,7 +23,8 @@ public:
 
 	enum class CollisionType {
 		Sphere,
-		Box
+		Box,
+		Ray,
 	};
 
 	CollisionType type = CollisionType::Sphere;

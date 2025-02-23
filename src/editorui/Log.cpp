@@ -24,11 +24,19 @@ protected:
             std::lock_guard<std::mutex> lock(mutex);
             logBuffer += static_cast<char>(c);
             if (c == '\n') {
-                logEntries.insert(logEntries.begin(), logBuffer);
+                logEntries.insert(logEntries.begin(), formatLogMessage(logBuffer));
                 logBuffer.clear();
             }
         }
         return c;
+    }
+
+private:
+    std::string formatLogMessage(const std::string& message) {
+        static int messageCounter = 1;
+        std::ostringstream formattedMessage;
+        formattedMessage << "[" << messageCounter++ << "] " << message;
+        return formattedMessage.str();
     }
 
 public:

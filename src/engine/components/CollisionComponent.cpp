@@ -33,9 +33,15 @@ void CollisionComponent::draw_inspector_widget() {
         if (ImGui::BeginCombo("Collision Type", current_type)) {
             if (ImGui::Selectable("Sphere", type == CollisionType::Sphere)) {
                 type = CollisionType::Sphere;
+                mesh = OBJLoader::get_instance().get_mesh("sphere");
             }
             if (ImGui::Selectable("Box", type == CollisionType::Box)) {
                 type = CollisionType::Box;
+                mesh = OBJLoader::get_instance().get_mesh("cube");
+            }
+            if (ImGui::Selectable("Ray", type == CollisionType::Ray)) {
+                type = CollisionType::Ray;
+                mesh = nullptr;
             }
             ImGui::EndCombo();
         }
@@ -60,15 +66,15 @@ void CollisionComponent::draw_inspector_widget() {
             sprintf_s(radius_text, "Radius: %.2f", radius);
 
             float text_width = ImGui::CalcTextSize(radius_text).x;
-            float text_x = (window_width - text_width);
+            float text_x = (window_width - text_width) * 0.5f;
             ImGui::SetCursorPosX(text_x);
             ImGui::TextColored(ImVec4(0, 1, 0, 1), "%s", radius_text);
         }
         else if (type == CollisionType::Box) {
-            glm::vec3 scale = gameObject->transform.scale;
+            ImGui::SliderFloat("Radius", &radius, 0.1f, 5.0f, "%.2f");
 
             float window_width = ImGui::GetContentRegionAvail().x;
-            float size = 50.0f;
+            float size = 50;
             float icon_x = (window_width - size) * 0.5f;
 
             ImVec2 cursor_pos = ImGui::GetCursorScreenPos();
@@ -82,22 +88,47 @@ void CollisionComponent::draw_inspector_widget() {
 
             ImGui::Dummy(ImVec2(window_width, size + 5.0f));
 
-            char scale_text[64];
-            sprintf_s(scale_text, "Scale: (%.2f, %.2f, %.2f)", scale.x, scale.y, scale.z);
+            char size_text[32];
+            sprintf_s(size_text, "Size: %.2f", radius);
 
-            float text_width = ImGui::CalcTextSize(scale_text).x;
+            float text_width = ImGui::CalcTextSize(size_text).x;
             float text_x = (window_width - text_width) * 0.5f;
             ImGui::SetCursorPosX(text_x);
 
-            ImGui::TextColored(ImVec4(0, 1, 0, 1), "%s", scale_text);
+            ImGui::TextColored(ImVec4(0, 1, 0, 1), "%s", size_text);
         }
+        else if (type == CollisionType::Ray) {
+            ImGui::SliderFloat("Range", &radius, 0.1f, 5.0f, "%.2f");
+
+            float window_width = ImGui::GetContentRegionAvail().x;
+            float size = radius * 10.0f;
+            float icon_x = (window_width - size) * 0.5f;
+
+            ImVec2 cursor_pos = ImGui::GetCursorScreenPos();
+            ImVec2 start(cursor_pos.x + window_width * 0.5f, cursor_pos.y);
+            ImVec2 end(start.x, start.y + size);
+            ImColor green = ImColor(0, 255, 0);
+
+            ImDrawList* draw_list = ImGui::GetWindowDrawList();
+            draw_list->AddLine(start, end, green, 2.0f);
+
+            ImGui::Dummy(ImVec2(window_width, size + 5.0f));
+
+            char size_text[32];
+            sprintf_s(size_text, "Length: %.2f", radius);
+
+            float text_width = ImGui::CalcTextSize(size_text).x;
+            float text_x = (window_width - text_width) * 0.5f;
+            ImGui::SetCursorPosX(text_x);
+
+            ImGui::TextColored(ImVec4(0, 1, 0, 1), "%s", size_text);
+        }
+
     }
 }
 
-
 void CollisionComponent::update() {
     if (mesh == nullptr || shader == nullptr || gameObject->camera == nullptr) return;
-
 
     shader->Use();
 
