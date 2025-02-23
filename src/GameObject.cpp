@@ -74,22 +74,30 @@ void GameObject::draw() {
     shader->SetMatrix4(view, "view");
     shader->SetMatrix4(transform, "transform");
 
-    if (camera->lightSources[0] != nullptr) {
-        LightComponent* lightComp = static_cast<LightComponent*>(camera->lightSources[0]->components["LightComponent"]);
-        glm::vec3 lightColor = glm::vec3(lightComp->lightColor[0], lightComp->lightColor[1], lightComp->lightColor[2]);
-        glm::vec3 lightPos = camera->lightSources[0]->transform.position;
+    int numLights = 0;
+    for (auto& lightSource : camera->lightSources) {
+        if (lightSource != nullptr) {
+            LightComponent* lightComp = static_cast<LightComponent*>(lightSource->components["LightComponent"]);
+            glm::vec3 lightColor = glm::vec3(lightComp->lightColor[0], lightComp->lightColor[1], lightComp->lightColor[2]);
+            glm::vec3 lightPos = lightSource->transform.position;
+            glm::vec3 lightDir = lightSource->transform.get_forward();
 
-        shader->SetVector3f(lightPos, "lightPos");
-        shader->SetVector3f(lightColor, "lightColor");
-        shader->SetVector3f(camera->position, "viewPos");
+            std::string index = std::to_string(numLights);
+            shader->SetVector3f(lightPos, "lightPos[" + index + "]");
+            shader->SetVector3f(lightColor, "lightColor[" + index + "]");
+            shader->SetVector3f(camera->position, "viewPos");
 
-        shader->SetInt(static_cast<int>(lightComp->type), "lightType");
+            shader->SetInt(static_cast<int>(lightComp->type), "lightType[" + index + "]");
 
-        if (lightComp->type == LightComponent::LightType::Spot) {
-            glm::vec3 lightDir = camera->lightSources[0]->transform.get_forward();
-            shader->SetVector3f(lightDir, "lightDir");
+            if (lightComp->type == LightComponent::LightType::Spot) {
+                shader->SetVector3f(lightDir, "lightDir[" + index + "]");
+            }
+
+            numLights++;
         }
     }
+
+    shader->SetInt(numLights, "numLights");
 
     this->mesh->Draw(shader);
 }
