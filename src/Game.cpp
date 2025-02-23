@@ -30,7 +30,7 @@ Game::Game(Camera* camera)
 
     spawn_light();
 
-    editorGrid = new EditorGrid(15, 15);
+    editorGrid = new EditorGrid(100, 100);
 
     memoryStatus = new MemoryStatus();
     collisionManager = new CollisionManager();

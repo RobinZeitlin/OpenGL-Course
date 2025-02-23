@@ -66,7 +66,7 @@ void EditorGrid::update(float deltaTime) {
     if (centerPos != cameraPos) {
         centerPos = cameraPos;
 
-        update_grid(25.0f, 25.0f);
+        update_grid(100.0f, 100.0f);
     }
 }
 

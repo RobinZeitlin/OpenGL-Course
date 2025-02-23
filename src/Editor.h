@@ -22,6 +22,8 @@ public:
 
 	void draw();
 
+	void SetupImGuiStyle();
+
 	GLFWwindow* window;
 	Game* game;
 

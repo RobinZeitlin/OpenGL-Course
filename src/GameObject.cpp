@@ -111,6 +111,7 @@ void GameObject::update()
 }
 
 void GameObject::change_texture(Texture* newTexture) {
+	if (mesh == nullptr) return;
     texture = newTexture;
     mesh->apply_texture(texture);
 }
