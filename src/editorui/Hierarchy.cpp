@@ -13,9 +13,13 @@ void Hierarchy::draw(Game* game, std::vector<GameObject*> objects)
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse;
     if (ImGui::Begin("Hierarchy", nullptr, window_flags))
     {
-        if (ImGui::Button("Add")) {
+        if (ImGui::Button("Add Gameobject")) {
             ImGui::SetNextWindowSize(ImVec2(200, 150));
             game->spawn_object();
+        }
+        if (ImGui::Button("Add Light")) {
+            ImGui::SetNextWindowSize(ImVec2(200, 150));
+            game->spawn_light();
         }
 
         if (ImGui::BeginPopup("GameObjectPopup")) {

@@ -26,7 +26,7 @@ void MeshComponent::draw_inspector_widget() {
             for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
                 if (entry.is_regular_file()) {
                     std::string textureName = entry.path().stem().string();
-                    items.push_back(textureName);
+                    items.push_back(textureName + ".png");
                 }
             }
 

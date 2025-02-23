@@ -14,9 +14,9 @@ public:
         : meshVertices(nullptr), meshIndices(nullptr), indexCount(0), vertexCount(0), VBO(0), VAO(0), EBO(0) {
     }
 
-    virtual ~Mesh();  // Virtual destructor for polymorphism
+    virtual ~Mesh();
 
-    virtual void Draw(Shader* aShader);  // Pure virtual method, making Mesh an abstract class
+    virtual void Draw(Shader* aShader);
 
     virtual void apply_texture(Texture* aTexture);
 

@@ -42,31 +42,41 @@ void Inspector::draw(Game* game)
 }
 
 void Inspector::draw_component_window(Game* game) {
-    if (game->selectedObject != nullptr) {
-        ImGui::InputText("Name", &game->selectedObject->name[0], game->selectedObject->name.size() + 1);
+    GameObject* selectedObject = game->selectedObject;
+    if (game == nullptr || selectedObject == nullptr) return;
+    if (selectedObject->components.empty()) return;
 
-        ImGui::SameLine();
+    ImGui::InputText("Name", &selectedObject->name[0], selectedObject->name.size() + 1);
 
-        const char* visibleTxt = game->selectedObject->bIsVisible ? "O" : "-";
-        if (ImGui::Button(visibleTxt, ImVec2(20, 20))) {
-            game->selectedObject->bIsVisible = !game->selectedObject->bIsVisible;
+    ImGui::SameLine();
+
+    const char* visibleTxt = selectedObject->bIsVisible ? "O" : "-";
+    if (ImGui::Button(visibleTxt, ImVec2(20, 20))) {
+        selectedObject->bIsVisible = !selectedObject->bIsVisible;
+    }
+    if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
+        ImGui::SetTooltip("Change Visibility");
+    }
+
+    if (ImGui::Button("Delete", ImVec2(60, 20))) {
+        if (selectedObject->is_component_already_added("LightComponent")) {
+			game->delete_light(selectedObject);
+			return;
         }
-        if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-            ImGui::SetTooltip("Change Visibility");
-        }
 
-        if (ImGui::Button("Delete", ImVec2(60, 20))) {
-            game->delete_object(game->selectedObject);
-        }
+        game->delete_object(selectedObject);
+        return;
+    }
 
-        for (auto& [name, component] : game->selectedObject->components) {
-            if(component != nullptr)
+    for (auto& [name, component] : selectedObject->components) {
+        if (component != nullptr) {
             component->draw_inspector_widget();
         }
-
-        draw_add_component_button();
     }
+
+    draw_add_component_button();
 }
+
 
 void Inspector::draw_add_component_button()
 {

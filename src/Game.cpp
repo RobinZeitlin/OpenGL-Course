@@ -30,8 +30,6 @@ Game::Game(Camera* camera)
 
     spawn_light();
 
-    flyingCamera->lightSource = lightSource;
-
     editorGrid = new EditorGrid(15, 15);
 
     memoryStatus = new MemoryStatus();
@@ -90,7 +88,7 @@ void Game::spawn_object()
     auto mesh = OBJLoader::get_instance().get_mesh("cube");
 
     auto object = new GameObject(
-        nullptr,
+        mesh,
         basicShader,
         TextureLoader::get_instance().get_texture("boxtexture.png"),
         flyingCamera,
@@ -107,7 +105,7 @@ void Game::spawn_light()
     auto mesh = OBJLoader::get_instance().get_mesh("cube");
 
     auto object = new GameObject(
-        nullptr,
+        mesh,
         basicShader,
         TextureLoader::get_instance().get_texture("light.png"),
         flyingCamera,
@@ -116,10 +114,24 @@ void Game::spawn_light()
     object->change_name(("Light" + std::to_string(objects.size())).c_str());
     objects.push_back(object);
 
-    lightSource = object;
-    lightSource->transform.scale = glm::vec3(0.1f, 0.1f, 0.1f);
+    object->transform.scale = glm::vec3(0.1f, 0.1f, 0.1f);
 
-    lightSource->add_component("LightComponent");
+    object->add_component("LightComponent");
+	lightsInScene.push_back(object);
+	flyingCamera->lightSources.push_back(object);
+}
+
+void Game::delete_light(GameObject* light) {
+	if (labs(lightsInScene.size()) <= 1) return;
+    auto it = std::find(lightsInScene.begin(), lightsInScene.end(), light);
+    if (it != lightsInScene.end()) {
+        lightsInScene.erase(it);
+    }
+    it = std::find(flyingCamera->lightSources.begin(), flyingCamera->lightSources.end(), light);
+    if (it != flyingCamera->lightSources.end()) {
+        flyingCamera->lightSources.erase(it);
+    }
+    delete_object(light);
 }
 
 void Game::delete_object(GameObject* gameObject) {

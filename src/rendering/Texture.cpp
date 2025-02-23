@@ -9,6 +9,8 @@
 
 Texture::Texture(const char* aPath)
 {
+	std::cout << "Loading texture: " << aPath << std::endl;
+
 	int channels = 0;
 	width = 0;
 	height = 0;

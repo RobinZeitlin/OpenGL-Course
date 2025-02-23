@@ -32,9 +32,12 @@ public:
 	
 	void spawn_object();
 	void spawn_light();
+	void delete_light(GameObject* light);
 	void delete_object(GameObject* gameObject);
 
 	std::vector<GameObject*> objects;
+	std::vector<GameObject*> lightsInScene;
+
 	GameObject* selectedObject;
 
 	Camera* flyingCamera;
@@ -43,8 +46,6 @@ public:
 	Shader* basicShader;
 	Shader* gridShader;
 	Shader* gizmoShader;
-
-	GameObject* lightSource;
 
 	EditorGrid* editorGrid;
 	MemoryStatus* memoryStatus;

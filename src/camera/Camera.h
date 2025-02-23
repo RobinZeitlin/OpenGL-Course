@@ -17,7 +17,7 @@ public:
 
     glm::mat4 GetViewMatrix();
 
-    GameObject* lightSource;
+    std::vector<GameObject*> lightSources;
 
     glm::vec3 position;
     glm::vec3 front;

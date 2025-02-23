@@ -70,23 +70,25 @@ void GameObject::draw() {
     transform = glm::rotate(transform, glm::radians(this->transform.eulerAngles.z), glm::vec3(0.0f, 0.0f, 1.0f));
     transform = glm::scale(transform, this->transform.scale);
 
-    LightComponent* lightComp = static_cast<LightComponent*>(camera->lightSource->components["LightComponent"]);
-    glm::vec3 lightColor = glm::vec3(lightComp->lightColor[0], lightComp->lightColor[1], lightComp->lightColor[2]);
-    glm::vec3 lightPos = camera->lightSource->transform.position;
-
     shader->SetMatrix4(projection, "projection");
     shader->SetMatrix4(view, "view");
     shader->SetMatrix4(transform, "transform");
 
-    shader->SetVector3f(lightPos, "lightPos");
-    shader->SetVector3f(lightColor, "lightColor");
-    shader->SetVector3f(camera->position, "viewPos");
+    if (camera->lightSources[0] != nullptr) {
+        LightComponent* lightComp = static_cast<LightComponent*>(camera->lightSources[0]->components["LightComponent"]);
+        glm::vec3 lightColor = glm::vec3(lightComp->lightColor[0], lightComp->lightColor[1], lightComp->lightColor[2]);
+        glm::vec3 lightPos = camera->lightSources[0]->transform.position;
 
-    shader->SetInt(static_cast<int>(lightComp->type), "lightType");
+        shader->SetVector3f(lightPos, "lightPos");
+        shader->SetVector3f(lightColor, "lightColor");
+        shader->SetVector3f(camera->position, "viewPos");
 
-    if (lightComp->type == LightComponent::LightType::Spot) {
-        glm::vec3 lightDir = camera->lightSource->transform.get_forward();
-        shader->SetVector3f(lightDir, "lightDir");
+        shader->SetInt(static_cast<int>(lightComp->type), "lightType");
+
+        if (lightComp->type == LightComponent::LightType::Spot) {
+            glm::vec3 lightDir = camera->lightSources[0]->transform.get_forward();
+            shader->SetVector3f(lightDir, "lightDir");
+        }
     }
 
     this->mesh->Draw(shader);
