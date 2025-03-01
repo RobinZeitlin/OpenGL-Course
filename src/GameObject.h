@@ -32,6 +32,9 @@ public:
 	void update();
 
 	void change_texture(Texture* newTexture);
+	void change_specular_texture(Texture* newTexture);
+	void change_albedo_texture(Texture* newTexture);
+
 	void change_mesh(Mesh* newMesh);
 
 	void add_component(std::string nameOfComponent);
@@ -45,7 +48,10 @@ public:
 	Transform transform;
 	Shader* shader;
 	Mesh* mesh;
+
 	Texture* texture;
+	Texture* albedoMap;
+	Texture* specularMap;
 
 	Shader* gizmoShader;
 

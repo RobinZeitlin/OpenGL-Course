@@ -16,7 +16,7 @@
 #include <iostream>
 
 GameObject::GameObject(Mesh* mesh, Shader* shader, Texture* texture, Camera* camera, glm::vec3 pos) 
-    : mesh(mesh), shader(shader), texture(texture), camera(camera) {
+    : mesh(mesh), shader(shader), texture(texture), specularMap(texture), albedoMap(texture), camera(camera) {
     transform.position = pos;
     transform.scale = glm::vec3(1);
 
@@ -112,12 +112,29 @@ void GameObject::update()
 
 void GameObject::change_texture(Texture* newTexture) {
 	if (mesh == nullptr) return;
+
     texture = newTexture;
     mesh->apply_texture(texture);
 }
 
+void GameObject::change_specular_texture(Texture* newTexture) {
+	if (mesh == nullptr) return;
+
+	specularMap = newTexture;
+	mesh->apply_specular(specularMap);
+}
+
+void GameObject::change_albedo_texture(Texture* newTexture) {
+    if (mesh == nullptr) return;
+	
+    albedoMap = newTexture;
+	mesh->apply_albedo(albedoMap);
+}
+
 void GameObject::change_mesh(Mesh* newMesh) {
     mesh = newMesh;
+
     if (texture != nullptr);
+
     mesh->apply_texture(texture);   
 }

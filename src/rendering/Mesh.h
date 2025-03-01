@@ -22,6 +22,8 @@ public:
     virtual void Draw(Shader* aShader);
 
     virtual void apply_texture(Texture* aTexture);
+    void apply_specular(Texture* aTexture);
+	void apply_albedo(Texture* aTexture);
 
     std::string meshName;
 
@@ -36,4 +38,6 @@ public:
 protected:
     unsigned int VBO, VAO, EBO;
     Texture* myTexture = nullptr;
+    Texture* mySpecular = nullptr;
+	Texture* myAlbedo = nullptr;
 };

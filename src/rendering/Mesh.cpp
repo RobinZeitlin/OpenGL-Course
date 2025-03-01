@@ -53,11 +53,19 @@ Mesh::~Mesh()
 
 void Mesh::Draw(Shader* aShader)
 {
-    if (myTexture != NULL) {
-        glBindTexture(GL_TEXTURE_2D, myTexture->textureObject);
-    }
-
     aShader->Use();
+
+    glActiveTexture(GL_TEXTURE0); // Bind base texture
+    glBindTexture(GL_TEXTURE_2D, myTexture ? myTexture->textureObject : 0);
+    aShader->SetInt(0, "_texture");
+
+    glActiveTexture(GL_TEXTURE1); // Bind albedo texture
+    glBindTexture(GL_TEXTURE_2D, myAlbedo ? myAlbedo->textureObject : 0);
+    aShader->SetInt(1, "_albedo");
+
+    glActiveTexture(GL_TEXTURE2); // Bind specular texture
+    glBindTexture(GL_TEXTURE_2D, mySpecular ? mySpecular->textureObject : 0);
+    aShader->SetInt(2, "_specular");
 
     glBindVertexArray(VAO);
 
@@ -72,6 +80,15 @@ void Mesh::Draw(Shader* aShader)
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+
 void Mesh::apply_texture(Texture* aTexture) {
     myTexture = aTexture;
+}
+
+void Mesh::apply_specular(Texture* aTexture) {
+	mySpecular = aTexture;
+}
+
+void Mesh::apply_albedo(Texture* aTexture) {
+	myAlbedo = aTexture;
 }
