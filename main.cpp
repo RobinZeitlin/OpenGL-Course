@@ -19,6 +19,7 @@
 #include "src/Editor.h"
 
 GLFWwindow* window;
+Shader* shadowShader;
 
 Editor* editor;
 
@@ -88,11 +89,62 @@ int main()
     gameInstance = new Game(&camera);
     editor = new Editor(window, gameInstance);
 
+#pragma region Shadow Mapping 
+
+    shadowShader = new Shader();
+    shadowShader->Initialize(
+        "src/shaders/shadowmap.vert",
+        "src/shaders/shadowmap.frag");
+
+    // Framebuffer for Shadow Map
+    unsigned int shadowMapFBO;
+    glGenFramebuffers(1, &shadowMapFBO);
+
+    // Texture for Shadow Map FBO
+    unsigned int shadowMapWidth = 2048, shadowMapHeight = 2048;
+    unsigned int shadowMap;
+    glGenTextures(1, &shadowMap);
+    glBindTexture(GL_TEXTURE_2D, shadowMap);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowMapWidth, shadowMapHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    // Prevents darkness outside the frustrum
+    float clampColor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, clampColor);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMap, 0);
+    // Needed since we don't touch the color buffer
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+	glm::mat4 orthoProjection = glm::ortho(-35.0f, 35.0f, -35.0f, 35.0f, 0.1f, 75.0f);
+	glm::mat4 lightView = glm::lookAt(20.0f * glm::vec3(1), glm::vec3(0), glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 lightProjection = orthoProjection * lightView;
+
+	shadowShader->SetMatrix4(lightProjection, "lightProjection");
+
+#pragma endregion
+
     while (!glfwWindowShouldClose(window))
     {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+
+		glEnable(GL_DEPTH_TEST);
+
+		glViewport(0, 0, shadowMapWidth, shadowMapHeight);
+		glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+        gameInstance->draw();
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 

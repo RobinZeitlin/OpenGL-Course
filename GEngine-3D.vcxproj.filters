@@ -278,6 +278,8 @@
     <None Include="src\shaders\fragment.shader" />
     <None Include="src\shaders\gridfragment.shader" />
     <None Include="src\shaders\gridvertex.shader" />
+    <None Include="src\shaders\shadowmapfrag.shader" />
+    <None Include="src\shaders\shadowmapvert.shader" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\glfw\lib\glfw3.lib" />

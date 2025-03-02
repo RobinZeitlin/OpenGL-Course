@@ -235,6 +235,8 @@
     <None Include="src\shaders\fragment.shader" />
     <None Include="src\shaders\gridfragment.shader" />
     <None Include="src\shaders\gridvertex.shader" />
+    <None Include="src\shaders\shadowmapfrag.shader" />
+    <None Include="src\shaders\shadowmapvert.shader" />
     <None Include="src\shaders\vertex.shader" />
   </ItemGroup>
   <ItemGroup>

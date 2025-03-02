@@ -1,9 +1,213 @@
 ﻿  Scanning sources for module dependencies...
+  main.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(321,9): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'main.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(107,9):
+      see previous definition of 'GL_ALL_ATTRIB_BITS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(409,9): warning C4005: 'GL_LOGIC_OP': macro redefinition
+  (compiling source file 'main.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1152,9):
+      see previous definition of 'GL_LOGIC_OP'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(493,9): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
+  (compiling source file 'main.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1153,9):
+      see previous definition of 'GL_TEXTURE_COMPONENTS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(587,9): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'main.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(973,9):
+      see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
+  (compiling source file 'main.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
+      see declaration of 'Mesh'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'main.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(45,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(46,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(50,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(51,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(53,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(54,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\robin\Documents\GitHub\OpenGL-Course\main.cpp(135,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Editor.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
+  (compiling source file 'src/Editor.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
+      see declaration of 'Mesh'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/Editor.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Game.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/Game.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
   GameObject.cpp
 C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
   (compiling source file 'src/GameObject.cpp')
       C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
       see declaration of 'Mesh'
   
-C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.cpp(112,28): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.cpp(137,28): warning C4390: ';': empty controlled statement found; is this the intent?
+  ContentBrowser.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
+  (compiling source file 'src/editorui/ContentBrowser.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
+      see declaration of 'Mesh'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/editorui/ContentBrowser.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Hierarchy.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
+  (compiling source file 'src/editorui/Hierarchy.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
+      see declaration of 'Mesh'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/editorui/Hierarchy.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Inspector.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/editorui/Inspector.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Log.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(24,3): warning C4150: deletion of pointer to incomplete type 'Mesh'; no destructor called
+  (compiling source file 'src/editorui/Log.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\src\GameObject.h(14,7):
+      see declaration of 'Mesh'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/editorui/Log.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  ToolBar.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/editorui/ToolBar.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  EditorGrid.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(321,9): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'src/engine/EditorGrid.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(107,9):
+      see previous definition of 'GL_ALL_ATTRIB_BITS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(409,9): warning C4005: 'GL_LOGIC_OP': macro redefinition
+  (compiling source file 'src/engine/EditorGrid.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1152,9):
+      see previous definition of 'GL_LOGIC_OP'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(493,9): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
+  (compiling source file 'src/engine/EditorGrid.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1153,9):
+      see previous definition of 'GL_TEXTURE_COMPONENTS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(587,9): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'src/engine/EditorGrid.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(973,9):
+      see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/EditorGrid.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\engine\EditorGrid.cpp(75,51): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  MeshOptimizer.cpp
+  OBJLoader.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\src\engine\OBJLoader.cpp(176,23): warning C4018: '<': signed/unsigned mismatch
+  CollisionComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/CollisionComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  LightComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/LightComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  MeshComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/MeshComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  TestMoveComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/TestMoveComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  TransformComponent.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/engine/components/TransformComponent.cpp')
+      C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glfw\include\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Mesh.cpp
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(321,9): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'src/rendering/Mesh.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(107,9):
+      see previous definition of 'GL_ALL_ATTRIB_BITS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(409,9): warning C4005: 'GL_LOGIC_OP': macro redefinition
+  (compiling source file 'src/rendering/Mesh.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1152,9):
+      see previous definition of 'GL_LOGIC_OP'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(493,9): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
+  (compiling source file 'src/rendering/Mesh.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(1153,9):
+      see previous definition of 'GL_TEXTURE_COMPONENTS'
+  
+C:\Users\robin\Documents\GitHub\OpenGL-Course\dependencies\glad\include\glad\glad.h(587,9): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
+  (compiling source file 'src/rendering/Mesh.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\GL\gl.h(973,9):
+      see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
+  
+  Generating Code...
+  LINK : C:\Users\robin\Documents\GitHub\OpenGL-Course\Debug\GEngine-3D.exe not found or not built by the last incremental link; performing full link
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+Component.h.obj : warning LNK4099: PDB '' was not found with 'Component.h.obj' or at ''; linking object as if no debug info
+Shader.obj : warning LNK4099: PDB '' was not found with 'Shader.obj' or at ''; linking object as if no debug info
+Texture.obj : warning LNK4099: PDB '' was not found with 'Texture.obj' or at ''; linking object as if no debug info
+Gizmo.obj : warning LNK4099: PDB '' was not found with 'Gizmo.obj' or at ''; linking object as if no debug info
+TextureLoader.obj : warning LNK4099: PDB '' was not found with 'TextureLoader.obj' or at ''; linking object as if no debug info
+Message.obj : warning LNK4099: PDB '' was not found with 'Message.obj' or at ''; linking object as if no debug info
+MemoryStatus.obj : warning LNK4099: PDB '' was not found with 'MemoryStatus.obj' or at ''; linking object as if no debug info
+ComponentManager.obj : warning LNK4099: PDB '' was not found with 'ComponentManager.obj' or at ''; linking object as if no debug info
+CollisionManager.obj : warning LNK4099: PDB '' was not found with 'CollisionManager.obj' or at ''; linking object as if no debug info
+Profiler.obj : warning LNK4099: PDB '' was not found with 'Profiler.obj' or at ''; linking object as if no debug info
+Camera.obj : warning LNK4099: PDB '' was not found with 'Camera.obj' or at ''; linking object as if no debug info
+glad.obj : warning LNK4099: PDB '' was not found with 'glad.obj' or at ''; linking object as if no debug info
+stb_image.obj : warning LNK4099: PDB '' was not found with 'stb_image.obj' or at ''; linking object as if no debug info
+imgui_widgets.obj : warning LNK4099: PDB '' was not found with 'imgui_widgets.obj' or at ''; linking object as if no debug info
+imgui_tables.obj : warning LNK4099: PDB '' was not found with 'imgui_tables.obj' or at ''; linking object as if no debug info
+imgui_impl_opengl3.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_opengl3.obj' or at ''; linking object as if no debug info
+imgui_impl_glfw.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_glfw.obj' or at ''; linking object as if no debug info
+imgui_draw.obj : warning LNK4099: PDB '' was not found with 'imgui_draw.obj' or at ''; linking object as if no debug info
+imgui_demo.obj : warning LNK4099: PDB '' was not found with 'imgui_demo.obj' or at ''; linking object as if no debug info
+imgui.obj : warning LNK4099: PDB '' was not found with 'imgui.obj' or at ''; linking object as if no debug info
   GEngine-3D.vcxproj -> C:\Users\robin\Documents\GitHub\OpenGL-Course\Debug\GEngine-3D.exe
